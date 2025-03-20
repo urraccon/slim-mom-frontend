@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Container, Fields, Form } from "./DiaryAddProductForm.style";
+import { Box, Container, Fields, Form } from "./DiaryAddProductForm.style";
 import AddIcon from "@mui/icons-material/Add";
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,7 @@ import {
   quantityValidation,
 } from "../../../utils/validator";
 import { addProduct } from "../../../redux/diary/diaryActions";
+import { reactBreakpoints } from "../../../styles/breakpoints";
 
 const btnStyle = {
   minWidth: 0,
@@ -54,8 +55,11 @@ const lgQtyFieldLabelSty = {
 };
 
 export const DiaryAddProductForm = () => {
-  const mobile = useMediaQuery({ maxWidth: 767 });
-  const tablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
+  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
+  const tablet = useMediaQuery({
+    minWidth: reactBreakpoints.tabletMin,
+    maxWidth: reactBreakpoints.tabletMax,
+  });
 
   const [open, setOpen] = useState(false);
   const [productName, setProdName] = useState("");
@@ -97,7 +101,7 @@ export const DiaryAddProductForm = () => {
 
   return (
     <>
-      {mobile ? (
+      {mobileMax ? (
         <>
           <ButtonComp onClick={() => setOpen(true)} style={btnStyle}>
             <AddIcon sx={iconStyle} />
@@ -108,29 +112,31 @@ export const DiaryAddProductForm = () => {
             onClose={() => setOpen(false)}
           >
             <Container>
-              <Form onSubmit={handleSubmit}>
-                <Fields>
-                  <Field
-                    error={prodNameErr}
-                    id="product"
-                    label="Enter product name"
-                    value={productName}
-                    onChange={(evt) => setProdName(evt.target.value)}
-                    style={mobileFieldStyle}
-                  />
-                  <Field
-                    error={quantityErr}
-                    id="quantity"
-                    label="Grams"
-                    value={quantity}
-                    onChange={(evt) => setQuantity(evt.target.value)}
-                    style={mobileFieldStyle}
-                  />
-                </Fields>
-                <ButtonComp type="submit" style={mobileAddBtnStyle}>
-                  Add
-                </ButtonComp>
-              </Form>
+              <Box>
+                <Form onSubmit={handleSubmit}>
+                  <Fields>
+                    <Field
+                      error={prodNameErr}
+                      id="product"
+                      label="Enter product name"
+                      value={productName}
+                      onChange={(evt) => setProdName(evt.target.value)}
+                      style={mobileFieldStyle}
+                    />
+                    <Field
+                      error={quantityErr}
+                      id="quantity"
+                      label="Grams"
+                      value={quantity}
+                      onChange={(evt) => setQuantity(evt.target.value)}
+                      style={mobileFieldStyle}
+                    />
+                  </Fields>
+                  <ButtonComp type="submit" style={mobileAddBtnStyle}>
+                    Add
+                  </ButtonComp>
+                </Form>
+              </Box>
             </Container>
           </ModalComp>
         </>

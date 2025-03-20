@@ -1,15 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  @media screen and (min-width: 1280px) {
-    width: 59.86%;
-  }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  align-items: center;
-
   @media screen and (max-width: 767px) {
     height: 45.33vh;
   }
@@ -18,8 +9,24 @@ export const Container = styled.div`
     height: 54.56vh;
   }
 
+  @media screen and (max-width: 1279px) {
+    display: flex;
+  }
+
   @media screen and (min-width: 1280px) {
+    width: 59.86%;
+  }
+`;
+
+export const Container = styled.div`
+  @media screen and (max-width: 1279px) {
+    margin: auto;
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: flex;
     height: 100%;
+    align-items: center;
   }
 `;
 

@@ -12,6 +12,7 @@ import { Logo } from "./components/Logo";
 import { Navigation } from "./components/Navigation";
 import { Divider } from "@mui/material";
 import { UserInfo } from "./components/UserInfo";
+import { reactBreakpoints } from "../../../styles/breakpoints";
 // import { useSelector } from 'react-redux';
 // import { useEffect, useState } from 'react';
 // import {
@@ -26,9 +27,12 @@ const dividerStyle = {
 };
 
 export const Header = () => {
-  const mobile = useMediaQuery({ maxWidth: 767 });
-  const tablet = useMediaQuery({ maxWidth: 1279, minWidth: 768 });
-  const desktop = useMediaQuery({ minWidth: 1280 });
+  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
+  const tablet = useMediaQuery({
+    maxWidth: reactBreakpoints.tabletMax,
+    minWidth: reactBreakpoints.tabletMin,
+  });
+  const desktopMin = useMediaQuery({ minWidth: reactBreakpoints.desktopMin });
 
   // const [privacy, setPrivacy] = useState('public');
 
@@ -43,8 +47,8 @@ export const Header = () => {
   //   }
   // }, [loggedIn]);
 
-  const privacy = "public";
-  const username = "";
+  const privacy = "private";
+  const username = "Alex";
 
   return (
     <Section>
@@ -53,7 +57,7 @@ export const Header = () => {
           <PublicLayout>
             <PublicContainer>
               <Logo privacy="public" />
-              {desktop && (
+              {desktopMin && (
                 <>
                   <Divider orientation="vertical" sx={dividerStyle} />
                 </>
@@ -67,7 +71,7 @@ export const Header = () => {
         <>
           <PrivateLayout>
             <PrivateContainer>
-              {mobile && (
+              {mobileMax && (
                 <>
                   <PrivateContent>
                     <Box>
@@ -89,7 +93,7 @@ export const Header = () => {
                   </PrivateContent>
                 </>
               )}
-              {desktop && (
+              {desktopMin && (
                 <>
                   <PrivateContent>
                     <Box>

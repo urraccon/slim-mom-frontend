@@ -48,10 +48,12 @@ export const Container = styled.div`
 
   @media screen and (max-width: 767px) {
     gap: 41px;
+    min-height: 962.4px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     gap: 48px;
+    min-height: 918.4px;
   }
 
   @media screen and (max-width: 1279px) {

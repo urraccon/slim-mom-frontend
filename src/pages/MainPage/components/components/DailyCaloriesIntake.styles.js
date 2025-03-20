@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
 
   @media screen and (max-width: 767px) {
     height: 596.8px;
+    margin: auto;
   }
 `;
 
@@ -30,7 +31,8 @@ export const Container = styled.div`
     height: calc(100vh - 121.6px);
     overflow: auto;
     display: flex;
-    align-items: center;
+
+    justify-content: center;
   }
 `;
 

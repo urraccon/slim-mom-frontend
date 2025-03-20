@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   Box,
   Calories,
@@ -8,37 +8,38 @@ import {
   Kcal,
   Name,
   Quantity,
-} from './DiaryProductListItem.styles';
-import { Button } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import { useMediaQuery } from 'react-responsive';
+} from "./DiaryProductListItem.styles";
+import { Button } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { useMediaQuery } from "react-responsive";
+import { reactBreakpoints } from "../../../../../styles/breakpoints";
 
-const btnStyle = mobile => ({
+const btnStyle = (mobileMax) => ({
   padding: 0,
   minWidth: 0,
   borderRadius: 0,
-  color: '#9B9FAA',
-  transition: 'background-color 0.3s ease',
-  height: 'fit-content',
-  marginTop: mobile ? '4px' : '2px',
+  color: "#9B9FAA",
+  transition: "background-color 0.3s ease",
+  height: "fit-content",
+  marginTop: mobileMax ? "4px" : "2px",
 
-  '&:hover': {
-    backgroundColor: '#f0f0f0',
+  "&:hover": {
+    backgroundColor: "#f0f0f0",
   },
 
-  '&:active': {
-    backgroundColor: '#e0e0e0',
+  "&:active": {
+    backgroundColor: "#e0e0e0",
   },
 });
 
-const iconStyle = mobile => ({
-  fontSize: mobile ? 17 : 20,
-  stroke: '#9B9FAA',
+const iconStyle = (mobileMax) => ({
+  fontSize: mobileMax ? 17 : 20,
+  stroke: "#9B9FAA",
   strokeWidth: 1,
 });
 
 export const DiaryProductListItem = ({ name, calories, quantity }) => {
-  const mobile = useMediaQuery({ maxWidth: 767 });
+  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
 
   return (
     <Item>
@@ -53,8 +54,8 @@ export const DiaryProductListItem = ({ name, calories, quantity }) => {
             <Kcal> kcal</Kcal>
           </Calories>
         </Box>
-        <Button sx={btnStyle(mobile)} disableRipple>
-          <CloseIcon style={iconStyle(mobile)} />
+        <Button sx={btnStyle(mobileMax)} disableRipple>
+          <CloseIcon style={iconStyle(mobileMax)} />
         </Button>
       </Container>
     </Item>

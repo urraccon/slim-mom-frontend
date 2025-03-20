@@ -1,4 +1,5 @@
 import { RightSideBar } from "../../components/RightSideBar/RightSideBar";
+import { reactBreakpoints } from "../../styles/breakpoints";
 import {
   Background,
   Container,
@@ -11,7 +12,7 @@ import { CalculatorCaloriesForm } from "./components/CalculatorCaloriesForm";
 import { useMediaQuery } from "react-responsive";
 
 export const CalculatorPage = () => {
-  const desktop = useMediaQuery({ minWidth: 1280 });
+  const desktopMin = useMediaQuery({ minWidth: reactBreakpoints.desktopMin });
 
   return (
     <>
@@ -23,7 +24,7 @@ export const CalculatorPage = () => {
           </Container>
         </Layout>
       </Section>
-      {desktop && (
+      {desktopMin && (
         <>
           <Leaf />
           <Background />

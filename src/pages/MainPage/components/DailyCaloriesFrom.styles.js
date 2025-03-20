@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   position: absolute;
   width: 100%;
   overflow: auto;
+  display: flex;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -30,8 +31,8 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  height: inherit;
-  align-items: center;
+  height: fit-content;
+  margin: auto;
 
   @media screen and (min-width: 1280px) {
     margin: auto;

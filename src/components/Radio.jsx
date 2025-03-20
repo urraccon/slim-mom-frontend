@@ -5,64 +5,65 @@ import {
   Radio,
   RadioGroup,
   SvgIcon,
-} from '@mui/material';
-import PropTypes from 'prop-types';
-import { useMediaQuery } from 'react-responsive';
+} from "@mui/material";
+import PropTypes from "prop-types";
+import { useMediaQuery } from "react-responsive";
+import { reactBreakpoints } from "../styles/breakpoints";
 
-const formStyle = largeScreens => ({
-  maxWidth: largeScreens ? 'none' : '85.7%',
+const formStyle = (tabletMin) => ({
+  maxWidth: tabletMin ? "none" : "85.7%",
 });
 
 const labelStyle = {
   fontSize: 14,
-  fontWeight: 'bold',
-  letterSpacing: '0.04em',
-  color: '#9B9FAA',
+  fontWeight: "bold",
+  letterSpacing: "0.04em",
+  color: "#9B9FAA",
   lineHeight: 1.2,
 
-  '&.Mui-focused': {
-    color: '#9B9FAA',
+  "&.Mui-focused": {
+    color: "#9B9FAA",
   },
 };
 
-const radioGrpStyle = largeScreens => ({
-  marginTop: largeScreens ? '20px' : '8px',
-  borderTop: largeScreens ? '1px solid #e0e0e0' : 'none',
+const radioGrpStyle = (tabletMin) => ({
+  marginTop: tabletMin ? "20px" : "8px",
+  borderTop: tabletMin ? "1px solid #e0e0e0" : "none",
 
-  '& :last-child': {
+  "& :last-child": {
     marginRight: 0,
   },
 });
 
-const radioStyle = largeScreens => ({
-  margin: largeScreens ? '8px 11.7% 0 0' : '0 10.05% 0 0',
+const radioStyle = (tabletMin) => ({
+  margin: tabletMin ? "8px 11.7% 0 0" : "0 10.05% 0 0",
 
-  '&:hover svg': {
-    color: '#fc842d',
+  "&:hover svg": {
+    color: "#fc842d",
   },
 
-  '& svg': {
-    color: '#e0e0e0',
+  "& svg": {
+    color: "#e0e0e0",
   },
 
-  '& .Mui-checked  svg': {
-    color: '#FC842D',
+  "& .Mui-checked  svg": {
+    color: "#FC842D",
   },
 
-  '& .Mui-checked + .MuiFormControlLabel-label': {
-    color: '#FC842D',
-    fontWeight: 'bold',
+  "& .Mui-checked + .MuiFormControlLabel-label": {
+    color: "#FC842D",
+    fontWeight: "bold",
   },
 
-  '& .MuiFormControlLabel-label': {
-    color: '#9B9FAA',
-    marginLeft: largeScreens ? '4px' : '8px',
+  "& .MuiFormControlLabel-label": {
+    color: "#9B9FAA",
+    marginLeft: tabletMin ? "4px" : "8px",
     fontSize: 14,
     lineHeight: 1.15,
     width: 13,
   },
 
-  '& .MuiRadio-root': {
+  "& .MuiRadio-root": {
     padding: 0,
   },
 });
@@ -99,20 +100,20 @@ const RadioIcon = () => (
 );
 
 export const RadioComp = ({ value, onChange, options, id }) => {
-  const largeScreens = useMediaQuery({ minWidth: 768 });
+  const tabletMin = useMediaQuery({ minWidth: reactBreakpoints.tabletMin });
 
   return (
-    <FormControl sx={formStyle(largeScreens)}>
+    <FormControl sx={formStyle(tabletMin)}>
       <FormLabel sx={labelStyle} id={id}>
         Blood Type *
       </FormLabel>
       <RadioGroup
-        sx={radioGrpStyle(largeScreens)}
+        sx={radioGrpStyle(tabletMin)}
         value={value}
         onChange={onChange}
         row
       >
-        {options?.map(option => (
+        {options?.map((option) => (
           <FormControlLabel
             key={option}
             value={option}
@@ -124,7 +125,7 @@ export const RadioComp = ({ value, onChange, options, id }) => {
               />
             }
             label={option}
-            sx={radioStyle(largeScreens)}
+            sx={radioStyle(tabletMin)}
           />
         ))}
       </RadioGroup>

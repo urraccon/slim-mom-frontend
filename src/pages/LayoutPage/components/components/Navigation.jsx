@@ -13,6 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { ModalComp } from "../../../../components/Modal";
+import { reactBreakpoints } from "../../../../styles/breakpoints";
 
 const btnStyle = {
   color: "#212121",
@@ -44,7 +45,7 @@ const activeOverlayNavBtn = {
 };
 
 export const Navigation = ({ privacy }) => {
-  const smallScreens = useMediaQuery({ maxWidth: 1279 });
+  const tabletMax = useMediaQuery({ maxWidth: reactBreakpoints.tabletMax });
 
   const [open, setOpen] = useState(false);
 
@@ -64,7 +65,7 @@ export const Navigation = ({ privacy }) => {
           </NavBtn>
           <NavBtn>
             <NavLink
-              to="register"
+              to="registration"
               style={({ isActive }) =>
                 isActive ? { ...navLinkStyle, ...activeBtn } : navLinkStyle
               }
@@ -75,7 +76,7 @@ export const Navigation = ({ privacy }) => {
         </NavMenu>
       )}
       {privacy === "private" &&
-        (smallScreens ? (
+        (tabletMax ? (
           <>
             {open ? (
               <Button sx={btnStyle} disableRipple>

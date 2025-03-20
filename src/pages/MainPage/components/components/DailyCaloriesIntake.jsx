@@ -17,6 +17,7 @@ import { Divider } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { ButtonComp } from "../../../../components/Button";
+import { reactBreakpoints } from "../../../../styles/breakpoints";
 // import { useSelector } from 'react-redux';
 // import {
 //   selectDailyRateCal,
@@ -27,14 +28,14 @@ const linkStyle = {
   alignSelf: "center",
 };
 
-const dividerStyle = (largeScreens) => ({
-  margin: largeScreens ? "32px 0 12px" : "32px 0 20px",
+const dividerStyle = (tabletMin) => ({
+  margin: tabletMin ? "32px 0 12px" : "32px 0 20px",
   borderBottom: "1px solid #e0e0e0",
-  width: largeScreens ? 330 : "100%",
+  width: tabletMin ? 330 : "100%",
 });
 
 export const DailyCaloriesIntake = () => {
-  const largeScreens = useMediaQuery({ minWidth: 768 });
+  const tabletMin = useMediaQuery({ minWidth: reactBreakpoints.tabletMin });
 
   // const restrictedProdList = useSelector(selectRestrictedProdList);
   // const dailyRateCal = useSelector(selectDailyRateCal);
@@ -61,7 +62,7 @@ export const DailyCaloriesIntake = () => {
               <Kcal>kcal</Kcal>
             </Value>
           </DailyRateCal>
-          <Divider sx={dividerStyle(largeScreens)} />
+          <Divider sx={dividerStyle(tabletMin)} />
           <RestrictedProd>
             <RestrictedProdTitle>Foods you should not eat</RestrictedProdTitle>
             <List>

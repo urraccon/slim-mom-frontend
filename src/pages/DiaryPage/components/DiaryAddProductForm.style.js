@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   position: absolute;
@@ -19,33 +19,43 @@ export const Container = styled.div`
   &::-webkit-scrollbar-thumb {
     background: #264061;
   }
+
+  @media screen and (max-width: 767px) {
+    display: flex;
+  }
+`;
+
+export const Box = styled.div`
+  @media screen and (max-width: 767px) {
+    min-height: 446.4px;
+    height: fit-content;
+    margin: auto;
+    width: 87.28%;
+  }
 `;
 
 export const Form = styled.form`
   display: flex;
 
   @media screen and (max-width: 767px) {
-    min-height: 446.4px;
-    height: calc(100vh - 201.6px);
     flex-direction: column;
     gap: 60px;
     align-items: center;
-    width: 87.28%;
+
     margin: 80px auto 0;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     gap: 87px;
-    margin-right: 88px;
   }
 
   @media screen and (min-width: 768px) {
     align-items: end;
+    margin-right: 88px;
   }
 
   @media screen and (min-width: 1280px) {
     gap: 60px;
-    margin-right: 88px;
   }
 `;
 

@@ -102,7 +102,7 @@ export const LoginForm = () => {
             <ButtonComp type="submit" style={btnStyle}>
               Log in
             </ButtonComp>
-            <NavLink to="/register">
+            <NavLink to="/registration">
               <ButtonComp
                 variant="outlined"
                 style={{ ...btnStyle, ...registerBtnStyle }}

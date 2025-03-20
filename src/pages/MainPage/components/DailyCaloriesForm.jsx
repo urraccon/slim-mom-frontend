@@ -20,15 +20,16 @@ import {
   weightValidation,
 } from "../../../utils/validator";
 import { RadioComp } from "../../../components/Radio";
+import { reactBreakpoints } from "../../../styles/breakpoints";
 
-const btnStyle = (mobile, desktop) => ({
-  alignSelf: mobile ? "center" : "start",
-  marginLeft: desktop ? 323 : 0,
+const btnStyle = (mobileMax, desktopMin) => ({
+  alignSelf: mobileMax ? "center" : "start",
+  marginLeft: desktopMin ? 323 : 0,
 });
 
 export const DailyCaloriesForm = () => {
-  const mobile = useMediaQuery({ maxWidth: 767 });
-  const desktop = useMediaQuery({ minWidth: 1280 });
+  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
+  const desktopMin = useMediaQuery({ minWidth: reactBreakpoints.desktopMin });
 
   const [height, setHeight] = useState("");
   const [age, setAge] = useState("");
@@ -127,7 +128,7 @@ export const DailyCaloriesForm = () => {
                   />
                 </RightColumn>
               </Fields>
-              <ButtonComp style={btnStyle(mobile, desktop)} type="submit">
+              <ButtonComp style={btnStyle(mobileMax, desktopMin)} type="submit">
                 Start losing weight
               </ButtonComp>
             </Form>

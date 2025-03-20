@@ -16,11 +16,15 @@ import { DiaryAddProductForm } from "./components/DiaryAddProductForm";
 import { DiaryProductList } from "./components/DiaryProductList/DiaryProductList";
 import { useMediaQuery } from "react-responsive";
 import { RightSideBar } from "../../components/RightSideBar/RightSideBar";
+import { reactBreakpoints } from "../../styles/breakpoints";
 
 export const DiaryPage = () => {
-  const mobile = useMediaQuery({ maxWidth: 767 });
-  const tablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
-  const desktop = useMediaQuery({ minWidth: 1280 });
+  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
+  const tablet = useMediaQuery({
+    minWidth: reactBreakpoints.tabletMin,
+    maxWidth: reactBreakpoints.tabletMax,
+  });
+  const desktopMin = useMediaQuery({ minWidth: reactBreakpoints.desktopMin });
 
   return (
     <>
@@ -30,7 +34,7 @@ export const DiaryPage = () => {
             <Content>
               <Wrapper>
                 <Block>
-                  {mobile && (
+                  {mobileMax && (
                     <>
                       <Box>
                         <DiaryDateCalendar />
@@ -39,7 +43,7 @@ export const DiaryPage = () => {
                       <DiaryAddProductForm />
                     </>
                   )}
-                  {(tablet || desktop) && (
+                  {(tablet || desktopMin) && (
                     <>
                       <Box>
                         <DiaryDateCalendar />
@@ -48,7 +52,7 @@ export const DiaryPage = () => {
                       <DiaryProductList />
                     </>
                   )}
-                  {desktop && <Gradient />}
+                  {desktopMin && <Gradient />}
                 </Block>
               </Wrapper>
             </Content>
@@ -56,7 +60,7 @@ export const DiaryPage = () => {
           </Container>
         </Layout>
       </Section>
-      {desktop && (
+      {desktopMin && (
         <>
           <Leaf />
           <Background />

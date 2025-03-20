@@ -19,16 +19,20 @@ import {
   heightValidation,
   weightValidation,
 } from "../../../utils/validator";
+import { reactBreakpoints } from "../../../styles/breakpoints";
 
-const btnStyle = (mobile, tablet, desktop) => ({
-  alignSelf: mobile ? "center" : tablet ? "start" : "end",
-  marginRight: desktop ? "12.34%" : 0,
+const btnStyle = (mobileMax, tablet, desktopMin) => ({
+  alignSelf: mobileMax ? "center" : tablet ? "start" : "end",
+  marginRight: desktopMin ? "12.34%" : 0,
 });
 
 export const CalculatorCaloriesForm = () => {
-  const mobile = useMediaQuery({ maxWidth: 767 });
-  const tablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
-  const desktop = useMediaQuery({ minWidth: 1280 });
+  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
+  const tablet = useMediaQuery({
+    minWidth: reactBreakpoints.tabletMin,
+    maxWidth: reactBreakpoints.tabletMax,
+  });
+  const desktopMin = useMediaQuery({ minWidth: reactBreakpoints.desktopMin });
 
   const [height, setHeight] = useState("");
   const [age, setAge] = useState("");
@@ -129,7 +133,7 @@ export const CalculatorCaloriesForm = () => {
                 </RightColumn>
               </Fields>
               <ButtonComp
-                style={btnStyle(mobile, tablet, desktop)}
+                style={btnStyle(mobileMax, tablet, desktopMin)}
                 type="submit"
               >
                 Start losing weight

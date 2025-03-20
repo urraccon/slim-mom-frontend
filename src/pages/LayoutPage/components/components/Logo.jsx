@@ -3,25 +3,26 @@ import { Image } from "./Logo.styles";
 import { logos } from "../../../../assets/assets";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { reactBreakpoints } from "../../../../styles/breakpoints";
 
-const imageSource = (privacy, mobile, smallScreens) => {
+const imageSource = (privacy, mobileMax, tabletMax) => {
   switch (privacy) {
     case "public":
-      return mobile
+      return mobileMax
         ? logos.mobile
-        : smallScreens
+        : tabletMax
         ? logos.tablet
         : logos.desktop;
     case "private":
-      return smallScreens ? logos.tablet : logos.desktop;
+      return tabletMax ? logos.tablet : logos.desktop;
     default:
       return null;
   }
 };
 
 export const Logo = ({ privacy }) => {
-  const mobile = useMediaQuery({ maxWidth: 767 });
-  const smallScreens = useMediaQuery({ maxWidth: 1279 });
+  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
+  const tabletMax = useMediaQuery({ maxWidth: reactBreakpoints.tabletMax });
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -31,7 +32,7 @@ export const Logo = ({ privacy }) => {
   return (
     <>
       <Image
-        src={imageSource(privacy, mobile, smallScreens)}
+        src={imageSource(privacy, mobileMax, tabletMax)}
         alt="slim mom logo"
         onClick={handleClick}
       />
