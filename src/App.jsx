@@ -8,7 +8,7 @@ import { CalculatorPage } from "./pages/CalculatorPage/CalculatorPage";
 
 const App = () => {
   return (
-    <Router basename="/slim-mom">
+    <Router basename="/slim-mom-frontend">
       <Routes>
         <Route path="/" element={<LayoutPage />}>
           <Route index element={<MainPage />} />
