@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { cssBreakpoints } from "../../../styles/breakpoints";
 
 export const Container = styled.div`
   position: absolute;
@@ -18,12 +19,12 @@ export const Container = styled.div`
     background: #264061;
   }
 
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     top: 81.6px;
     height: calc(100vh - 81.6px);
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     top: 154px;
     height: calc(100vh - 154px);
   }
@@ -35,7 +36,7 @@ export const Content = styled.div`
   gap: 55px;
   margin: auto;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     align-items: center;
     padding-top: 40px;
     max-width: 450px;
@@ -44,18 +45,19 @@ export const Content = styled.div`
     height: 566.4px;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     padding-top: 160px;
     height: 942.4px;
-    max-width: 850px;
+    max-width: ${cssBreakpoints.heights.smallHeightMax};
     width: 91.6%;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     align-items: start;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     padding-top: 140px;
     height: 696px;
     width: 97.5%;
@@ -85,7 +87,7 @@ export const Fields = styled.div`
   flex-direction: column;
   gap: 40px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     width: 240px;
   }
 `;
@@ -93,13 +95,13 @@ export const Fields = styled.div`
 export const Buttons = styled.div`
   display: flex;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     flex-direction: column;
     gap: 20px;
     align-items: center;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     align-items: start;
     flex-direction: row;
     gap: 32px;

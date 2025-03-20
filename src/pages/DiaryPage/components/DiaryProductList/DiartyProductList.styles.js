@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { cssBreakpoints } from "../../../../styles/breakpoints";
 
 export const Container = styled.div`
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     height: 204.5px;
     overflow: auto;
 
@@ -26,15 +27,16 @@ export const List = styled.ul`
   padding: 0;
   margin: 0;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     gap: 20px;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     height: 244px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     gap: 16px;
     overflow: auto;
 
@@ -51,7 +53,7 @@ export const List = styled.ul`
     }
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     height: 271px;
   }
 `;

@@ -1,20 +1,21 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { cssBreakpoints } from "../../../styles/breakpoints";
 
 export const Section = styled.section`
   position: fixed;
   width: 100%;
 
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     background-color: white;
   }
 `;
 
 export const PublicLayout = styled.div`
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     border-bottom: 2px solid #e0e0e0;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     margin-top: 80px;
   }
 `;
@@ -23,7 +24,7 @@ export const PublicContainer = styled.div`
   display: flex;
   margin: auto;
 
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     height: 80px;
     justify-content: space-between;
 
@@ -32,17 +33,18 @@ export const PublicContainer = styled.div`
     align-items: center;
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     max-width: 450px;
     width: 87.5%;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    max-width: 850px;
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
+    max-width: ${cssBreakpoints.heights.smallHeightMax};
     width: 91.66%;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     gap: 20px;
     width: 97.5%;
     align-items: end;
@@ -51,11 +53,12 @@ export const PublicContainer = styled.div`
 `;
 
 export const PrivateLayout = styled.div`
-  @media screen and (min-width: 1280px) and (max-height: 850px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .desktopMin}) and (max-height: ${cssBreakpoints.heights.smallHeightMax}) {
     margin-right: 6px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     background: linear-gradient(to right, white 59.6%, #f0f1f3 40.4%);
   }
 `;
@@ -63,15 +66,16 @@ export const PrivateLayout = styled.div`
 export const PrivateContainer = styled.div`
   display: flex;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     flex-direction: column;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     border-bottom: 2px solid #e0e0e0;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     background: linear-gradient(to right, white 59.6%, #f0f1f3 40.4%);
     max-width: 1477px;
     margin: auto;
@@ -79,23 +83,24 @@ export const PrivateContainer = styled.div`
 `;
 
 export const PrivateContent = styled.div`
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     border-bottom: 2px solid #e0e0e0;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     width: 91.66%;
-    max-width: 850px;
+    max-width: ${cssBreakpoints.heights.smallHeightMax};
     align-items: center;
     margin: auto;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     display: flex;
     justify-content: space-between;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     align-items: end;
     margin: 80px auto 0;
     width: 97.5%;
@@ -105,27 +110,28 @@ export const PrivateContent = styled.div`
 export const Box = styled.div`
   display: flex;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     justify-content: space-between;
     width: 87.5%;
     max-width: 450px;
     margin: auto;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     gap: 48px;
   }
 
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     height: 80px;
     align-items: center;
   }
 
-  @media screen and (max-width: 767px), (min-width: 1280px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}),
+    (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     gap: 20px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     align-items: end;
   }
 `;

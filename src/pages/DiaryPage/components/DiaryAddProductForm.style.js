@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { cssBreakpoints } from "../../../styles/breakpoints";
 
 export const Container = styled.div`
   position: absolute;
@@ -20,13 +21,13 @@ export const Container = styled.div`
     background: #264061;
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     display: flex;
   }
 `;
 
 export const Box = styled.div`
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     min-height: 446.4px;
     height: fit-content;
     margin: auto;
@@ -37,7 +38,7 @@ export const Box = styled.div`
 export const Form = styled.form`
   display: flex;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     flex-direction: column;
     gap: 60px;
     align-items: center;
@@ -45,16 +46,17 @@ export const Form = styled.form`
     margin: 80px auto 0;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     gap: 87px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     align-items: end;
     margin-right: 88px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     gap: 60px;
   }
 `;
@@ -62,19 +64,20 @@ export const Form = styled.form`
 export const Fields = styled.div`
   display: flex;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     flex-direction: column;
     gap: 32px;
     width: 100%;
     max-width: 450px;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     gap: 22px;
     width: 70.5%;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     gap: 48px;
     width: 73.85%;
   }

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { backgrounds } from "../../assets/assets";
+import { cssBreakpoints } from "../../styles/breakpoints";
 
 export const Section = styled.div`
   position: absolute;
@@ -8,11 +9,11 @@ export const Section = styled.div`
   top: 0;
   z-index: -1;
 
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     overflow: hidden;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     overflow: auto;
 
     &::-webkit-scrollbar {
@@ -30,12 +31,13 @@ export const Section = styled.div`
 `;
 
 export const Layout = styled.div`
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     top: 81.6px;
     height: calc(100vh - 81.6px);
   }
 
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     position: absolute;
     width: 100%;
     overflow: auto;
@@ -52,16 +54,16 @@ export const Layout = styled.div`
       background: #264061;
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
       height: calc(100vh - 121.6px);
       top: 121.6px;
     }
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     height: inherit;
     overflow: hidden;
-    min-height: 850px;
+    min-height: ${cssBreakpoints.heights.smallHeightMax};
     max-width: 1440px;
     margin: auto;
   }
@@ -71,20 +73,21 @@ export const Container = styled.div`
   display: flex;
   height: 100%;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     gap: 60px;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     gap: 55px;
   }
 
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     flex-direction: column;
     justify-content: space-between;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     width: 97.5%;
     margin: auto;
   }
@@ -93,7 +96,7 @@ export const Container = styled.div`
 export const Content = styled.section`
   display: flex;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     margin: 40px auto 0;
     width: 87.5%;
     max-width: 450px;
@@ -101,19 +104,20 @@ export const Content = styled.section`
     height: 35.6vh;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     margin: 100px auto 0;
     width: 91.67%;
-    max-width: 850px;
+    max-width: ${cssBreakpoints.heights.smallHeightMax};
     height: 42.87vh;
     min-height: 439px;
   }
 
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     align-items: center;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     margin: 293px 0 91px;
     width: 59.84%;
     position: relative;
@@ -121,11 +125,11 @@ export const Content = styled.section`
 `;
 
 export const Wrapper = styled.div`
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     width: 100%;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     margin: auto;
     width: 95.8%;
   }
@@ -136,11 +140,12 @@ export const Block = styled.div`
   flex-direction: column;
   gap: 60px;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     margin-right: 13.35%;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     position: relative;
     margin-right: 14.78%;
   }
@@ -150,11 +155,11 @@ export const Box = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     gap: 32px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     gap: 49px;
   }
 `;
@@ -194,8 +199,9 @@ export const Background = styled.div`
   background: linear-gradient(to right, white 59.6%, #f0f1f3 40.4%);
   max-width: 1477px;
 
-  @media screen and (min-width: 1280px) and (max-height: 849px) {
-    transform: translateX(-50.2%);
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .desktopMin}) and (max-height: ${cssBreakpoints.heights.smallHeightMax}) {
+    transform: translateX(-50.25%);
   }
 `;
 

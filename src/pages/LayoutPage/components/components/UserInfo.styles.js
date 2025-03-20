@@ -1,13 +1,15 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { cssBreakpoints } from "../../../../styles/breakpoints";
 
 export const Wrapper = styled.div`
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     height: 40px;
     background-color: #eff1f3;
     display: flex;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     margin-bottom: 6px;
   }
 `;
@@ -18,7 +20,7 @@ export const Container = styled.ul`
   display: flex;
   align-items: end;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
     gap: 16px;
     max-width: 450px;
 
@@ -28,15 +30,16 @@ export const Container = styled.ul`
     margin: auto;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     margin: 0;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     gap: 15px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     gap: 20px;
   }
 `;
@@ -70,7 +73,7 @@ export const LogoutBtn = styled.li`
     color: #212121;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     width: 50px;
   }
 `;

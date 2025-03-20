@@ -5,3 +5,16 @@ export const reactBreakpoints = {
   tabletMax: 1279,
   desktopMin: 1280,
 };
+
+export const cssBreakpoints = {
+  lengths: {
+    mobileMax: "767px",
+    tabletMin: "768px",
+    tabletMax: "1279px",
+    desktopMin: "1280px",
+  },
+
+  heights: {
+    smallHeightMax: "850px",
+  },
+};
