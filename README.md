@@ -14,15 +14,15 @@ This is a frontend application built using Vite, a fast and modern build tool. T
 ## Installation
 
 1. Clone the repository:
-   git clone <repository-url>
-   cd <project-folder>
+   git clone repository-url
+   cd project-folder
 2. Install dependencies: npm install
 3. Ensure you have Node.js installed (version 16 or higher):
    node -v
 
 ## Configuration
 
-1. Create a .env file in the root directory and add the necessary environment variables for your project: VITE_API_URL=<your-api-url>
+1. Create a .env file in the root directory and add the necessary environment variables for your project: VITE_API_URL=your-api-url
 2. You can configure other settings like API keys or port numbers inside this file.
 
 ## Project Stucture
