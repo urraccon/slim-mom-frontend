@@ -27,17 +27,17 @@ This is a frontend application built using Vite, a fast and modern build tool. T
 
 ## Project Stucture
 
-- /public # Static assets (images, fonts, etc.)
-- /src # Source code (components, views, etc.)
-- /assets # Static assets (CSS, images, etc.)
-- /components # Reusable components
-- /pages # Pages
-- /redux #Global state
-- /styles # Global styles
-- /utils # Utility functions
-- /vite.config.js # Vite configuration
-- /package.json # Project metadata and dependencies
-- /.env # Environment variables
+- /public: Static assets (images, fonts, etc.)
+- /src: Source code (components, views, etc.)
+- /assets: Static assets (CSS, images, etc.)
+- /components: Reusable components
+- /pages: Page components
+- /redux: Global state
+- /styles: Global styles
+- /utils: Utility functions
+- /vite.config.js: Vite configuration
+- /package.json: Project metadata and dependencies
+- /.env: Environment variables
 
 ## Technologies User
 
