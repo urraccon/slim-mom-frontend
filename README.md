@@ -1,4 +1,4 @@
-# Slim Mom Frontend Project
+# Slim Mom Frontend
 
 ## Overview
 
