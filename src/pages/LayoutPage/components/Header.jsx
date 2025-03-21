@@ -13,12 +13,13 @@ import { Navigation } from "./components/Navigation";
 import { Divider } from "@mui/material";
 import { UserInfo } from "./components/UserInfo";
 import { reactBreakpoints } from "../../../styles/breakpoints";
-// import { useSelector } from 'react-redux';
-// import { useEffect, useState } from 'react';
-// import {
-//   selectLoggedIn,
-//   selectUserName,
-// } from 'components/redux/auth/selectors';
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import {
+  selectIsAuthenticated,
+  selectUser,
+} from "../../../store/auth/authSelectors";
+import { useNavigate } from "react-router-dom";
 
 const dividerStyle = {
   height: 32,
@@ -34,21 +35,30 @@ export const Header = () => {
   });
   const desktopMin = useMediaQuery({ minWidth: reactBreakpoints.desktopMin });
 
-  // const [privacy, setPrivacy] = useState('public');
+  const [privacy, setPrivacy] = useState("public");
+  const [username, setUsername] = useState("");
 
-  // const username = useSelector(selectUserName);
-  // const loggedIn = useSelector(selectLoggedIn);
+  const user = useSelector(selectUser);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     setPrivacy('private');
-  //   } else {
-  //     setPrivacy('public');
-  //   }
-  // }, [loggedIn]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      setPrivacy("private");
+      navigate("/calculator");
+    } else {
+      setPrivacy("public");
+      navigate("/");
+    }
+  }, [isAuthenticated]);
 
-  const privacy = "private";
-  const username = "Alex";
+  useEffect(() => {
+    if (user) {
+      setUsername(user.name);
+    } else {
+      setUsername("");
+    }
+  }, [user]);
 
   return (
     <Section>

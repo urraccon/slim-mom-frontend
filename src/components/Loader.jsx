@@ -1,6 +1,6 @@
 import { Backdrop, CircularProgress } from "@mui/material";
 import { useSelector } from "react-redux";
-import { selectLoading } from "../redux/loading/loadingSelectors";
+import { selectAuthStatus } from "../store/auth/authSelectors";
 
 const backdropStyle = {
   color: "#fff",
@@ -12,11 +12,11 @@ const loadingStyle = {
 };
 
 export const Loader = () => {
-  const loading = useSelector(selectLoading);
+  const status = useSelector(selectAuthStatus);
 
   return (
     <>
-      {loading && (
+      {status === "loading" && (
         <Backdrop sx={backdropStyle} open={true}>
           <CircularProgress sx={loadingStyle} />
         </Backdrop>

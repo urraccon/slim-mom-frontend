@@ -2,7 +2,7 @@ import { Divider } from "@mui/material";
 import { Container, LogoutBtn, Username, Wrapper } from "./UserInfo.styles";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { logout } from "../../../../redux/auth/authActions";
+import { logout } from "../../../../store/auth/authThunks";
 
 const dividerStyle = {
   height: "32px",

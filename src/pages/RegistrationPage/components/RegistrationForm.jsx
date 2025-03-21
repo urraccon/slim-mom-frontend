@@ -16,7 +16,7 @@ import {
   nameValidation,
   registrationPassValidation,
 } from "../../../utils/validator";
-import { register } from "../../../redux/auth/authActions";
+import { register } from "../../../store/auth/authThunks";
 
 const loginBtnStyle = {
   backgroundColor: "white",
@@ -78,7 +78,7 @@ export const RegistrationForm = () => {
       const userData = {
         name,
         email,
-        pass,
+        password: pass,
       };
 
       dispatch(register(userData));

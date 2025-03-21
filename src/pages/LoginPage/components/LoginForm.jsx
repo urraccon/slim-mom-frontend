@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { Field } from "../../../components/Field";
 import { ButtonComp } from "../../../components/Button";
 import { emailValidation, passValidation } from "../../../utils/validator";
-import { login } from "../../../redux/auth/authActions";
+import { login } from "../../../store/auth/authThunks";
 
 const registerBtnStyle = {
   backgroundColor: "white",
@@ -64,7 +64,7 @@ export const LoginForm = () => {
     if (emailValid && passValid) {
       const userData = {
         email,
-        pass,
+        password: pass,
       };
 
       dispatch(login(userData));

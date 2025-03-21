@@ -11,15 +11,17 @@ import {
   Block,
   Wrapper,
 } from "./RightSideBar.styles";
-import { useSelector } from "react-redux";
-import {
-  selectDailyRateCal,
-  selectRestrictedProdList,
-} from "../../redux/diary/diarySelectors";
+// import { useSelector } from "react-redux";
+// import {
+//   selectDailyRateCal,
+//   selectRestrictedProdList,
+// } from "../../store/diary/diarySelectors";
 
 export const RightSideBar = () => {
-  const restrictedProdList = useSelector(selectRestrictedProdList);
-  const dailyRateCal = useSelector(selectDailyRateCal);
+  // const restrictedProdList = useSelector(selectRestrictedProdList);
+  // const dailyRateCal = useSelector(selectDailyRateCal);
+  const restrictedProdList = [];
+  const dailyRateCal = 0;
 
   const date = dayjs();
   const formattedDate = dayjs(date).format("DD.MM.YYYY");

@@ -32,7 +32,7 @@ This is a frontend application built using Vite, a fast and modern build tool. T
 - /assets: Static assets (CSS, images, etc.)
 - /components: Reusable components
 - /pages: Page components
-- /redux: Global state
+- /store: Global state
 - /styles: Global styles
 - /utils: Utility functions
 - /vite.config.js: Vite configuration

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Box, Container, Fields, Form } from "./DiaryAddProductForm.style";
 import AddIcon from "@mui/icons-material/Add";
-import dayjs from "dayjs";
-import { useDispatch } from "react-redux";
+// import dayjs from "dayjs";
+// import { useDispatch } from "react-redux";
 import { ButtonComp } from "../../../components/Button";
 import { ModalComp } from "../../../components/Modal";
 import { Field } from "../../../components/Field";
@@ -11,7 +11,7 @@ import {
   prodNameValidation,
   quantityValidation,
 } from "../../../utils/validator";
-import { addProduct } from "../../../redux/diary/diaryActions";
+// import { addProduct } from "../../../store/diary/diaryActions";
 import { reactBreakpoints } from "../../../styles/breakpoints";
 
 const btnStyle = {
@@ -66,7 +66,7 @@ export const DiaryAddProductForm = () => {
   const [quantity, setQuantity] = useState("");
   const [prodNameErr, setProdNameErr] = useState(null);
   const [quantityErr, setQuantityErr] = useState(null);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -86,17 +86,17 @@ export const DiaryAddProductForm = () => {
       setQuantityErr(false);
     }
 
-    if (prodNameValid && quantityValid) {
-      const now = dayjs();
+    // if (prodNameValid && quantityValid) {
+    //   const now = dayjs();
 
-      const productData = {
-        productName,
-        quantity,
-        date: now,
-      };
+    //   const productData = {
+    //     productName,
+    //     quantity,
+    //     date: now,
+    //   };
 
-      dispatch(addProduct(productData));
-    }
+    //   dispatch(addProduct(productData));
+    // }
   }
 
   return (
