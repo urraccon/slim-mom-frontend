@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { reactBreakpoints } from "../../../../styles/breakpoints";
 
-const imageSource = (privacy, mobileMax, tabletMax) => {
+const imageSource = (privacy, largeMobileMax, tabletMax) => {
   switch (privacy) {
     case "public":
-      return mobileMax
+      return largeMobileMax
         ? logos.mobile
         : tabletMax
         ? logos.tablet
@@ -21,7 +21,9 @@ const imageSource = (privacy, mobileMax, tabletMax) => {
 };
 
 export const Logo = ({ privacy }) => {
-  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
+  const largeMobileMax = useMediaQuery({
+    maxWidth: reactBreakpoints.largeMobileMax,
+  });
   const tabletMax = useMediaQuery({ maxWidth: reactBreakpoints.tabletMax });
   const navigate = useNavigate();
 
@@ -32,7 +34,7 @@ export const Logo = ({ privacy }) => {
   return (
     <>
       <Image
-        src={imageSource(privacy, mobileMax, tabletMax)}
+        src={imageSource(privacy, largeMobileMax, tabletMax)}
         alt="slim mom logo"
         onClick={handleClick}
       />

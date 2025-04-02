@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { cssBreakpoints } from "../../../styles/breakpoints";
+import AddIcon from "@mui/icons-material/Add";
 
 export const Container = styled.div`
   position: absolute;
@@ -21,13 +22,13 @@ export const Container = styled.div`
     background: #264061;
   }
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     display: flex;
   }
 `;
 
 export const Box = styled.div`
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     min-height: 446.4px;
     height: fit-content;
     margin: auto;
@@ -38,7 +39,7 @@ export const Box = styled.div`
 export const Form = styled.form`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     flex-direction: column;
     gap: 60px;
     align-items: center;
@@ -64,7 +65,7 @@ export const Form = styled.form`
 export const Fields = styled.div`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     flex-direction: column;
     gap: 32px;
     width: 100%;

@@ -46,7 +46,7 @@ export const Box = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     width: 87.5%;
     max-width: 450px;
     margin: 32px auto 0;
@@ -68,7 +68,7 @@ export const Box = styled.div`
 
   @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     height: 553.8px;
-    width: 47.5%;
+    width: 48.72%;
     margin-top: 140px;
   }
 `;
@@ -77,7 +77,7 @@ export const Title = styled.h1`
   margin: 0;
   color: #212121;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     font-size: 18px;
     line-height: 1.4em;
   }
@@ -92,7 +92,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 40px;
   }
 
@@ -105,7 +105,7 @@ export const Fields = styled.div`
   display: flex;
   gap: 32px;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     flex-direction: column;
   }
 
@@ -118,7 +118,7 @@ export const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 32px;
   }
 
@@ -140,7 +140,7 @@ export const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 32px;
   }
 

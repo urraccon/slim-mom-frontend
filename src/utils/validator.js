@@ -22,7 +22,7 @@ export const emailValidation = (email) => {
   return valid;
 };
 
-export const passValidation = (pass) => {
+export const passwordValidation = (pass) => {
   const valid = /^.{8,}$/.test(pass);
 
   return valid;
@@ -34,14 +34,8 @@ export const nameValidation = (name) => {
   return valid;
 };
 
-export const registrationPassValidation = (pass) => {
+export const registrationPasswordValidation = (pass) => {
   const valid = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(pass);
-
-  return valid;
-};
-
-export const prodNameValidation = (product) => {
-  const valid = /^(?=.*[A-Za-z])[A-Za-z ]+$/.test(product);
 
   return valid;
 };

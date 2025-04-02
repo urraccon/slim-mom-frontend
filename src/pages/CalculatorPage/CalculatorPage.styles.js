@@ -28,7 +28,7 @@ export const Layout = styled.div`
     background: #264061;
   }
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     height: calc(100vh - 121.6px);
     top: 121.6px;
   }
@@ -48,7 +48,7 @@ export const Container = styled.div`
   display: flex;
   height: 100%;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 41px;
     min-height: 962.4px;
   }

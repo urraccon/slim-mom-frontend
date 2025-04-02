@@ -1,79 +1,15 @@
-import {
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  SvgIcon,
-} from "@mui/material";
+import { Radio } from "@mui/material";
 import PropTypes from "prop-types";
-import { useMediaQuery } from "react-responsive";
-import { reactBreakpoints } from "../styles/breakpoints";
-
-const formStyle = (tabletMin) => ({
-  maxWidth: tabletMin ? "none" : "85.7%",
-});
-
-const labelStyle = {
-  fontSize: 14,
-  fontWeight: "bold",
-  letterSpacing: "0.04em",
-  color: "#9B9FAA",
-  lineHeight: 1.2,
-
-  "&.Mui-focused": {
-    color: "#9B9FAA",
-  },
-};
-
-const radioGrpStyle = (tabletMin) => ({
-  marginTop: tabletMin ? "20px" : "8px",
-  borderTop: tabletMin ? "1px solid #e0e0e0" : "none",
-
-  "& :last-child": {
-    marginRight: 0,
-  },
-});
-
-const radioStyle = (tabletMin) => ({
-  margin: tabletMin ? "8px 11.7% 0 0" : "0 10.05% 0 0",
-
-  "&:hover svg": {
-    color: "#fc842d",
-  },
-
-  "& svg": {
-    color: "#e0e0e0",
-  },
-
-  "& .Mui-checked  svg": {
-    color: "#FC842D",
-  },
-
-  "& .Mui-checked + .MuiFormControlLabel-label": {
-    color: "#FC842D",
-    fontWeight: "bold",
-  },
-
-  "& .MuiFormControlLabel-label": {
-    color: "#9B9FAA",
-    marginLeft: tabletMin ? "4px" : "8px",
-    fontSize: 14,
-    lineHeight: 1.15,
-    width: 13,
-  },
-
-  "& .MuiRadio-root": {
-    padding: 0,
-  },
-});
-
-const iconStyle = {
-  fontSize: 20,
-};
+import {
+  StyledFormControl,
+  StyledFormControlLabel,
+  StyledFormLabel,
+  StyledRadioGroup,
+  StyledSvgIcon,
+} from "../styles/components/CustomRadio.styles";
 
 const RadioChecked = () => (
-  <SvgIcon sx={iconStyle}>
+  <StyledSvgIcon>
     <circle
       cx="12"
       cy="12"
@@ -83,11 +19,11 @@ const RadioChecked = () => (
       fill="none"
     />
     <circle cx="12" cy="12" r="5" fill="#fc842d" />
-  </SvgIcon>
+  </StyledSvgIcon>
 );
 
 const RadioIcon = () => (
-  <SvgIcon sx={iconStyle}>
+  <StyledSvgIcon>
     <circle
       cx="12"
       cy="12"
@@ -96,40 +32,31 @@ const RadioIcon = () => (
       strokeWidth="1"
       fill="none"
     />
-  </SvgIcon>
+  </StyledSvgIcon>
 );
 
 export const RadioComp = ({ value, onChange, options, id }) => {
-  const tabletMin = useMediaQuery({ minWidth: reactBreakpoints.tabletMin });
-
   return (
-    <FormControl sx={formStyle(tabletMin)}>
-      <FormLabel sx={labelStyle} id={id}>
-        Blood Type *
-      </FormLabel>
-      <RadioGroup
-        sx={radioGrpStyle(tabletMin)}
-        value={value}
-        onChange={onChange}
-        row
-      >
+    <StyledFormControl>
+      <StyledFormLabel id={id}>Blood Type *</StyledFormLabel>
+      <StyledRadioGroup value={value} onChange={onChange} row>
         {options?.map((option) => (
-          <FormControlLabel
+          <StyledFormControlLabel
             key={option}
             value={option}
             control={
               <Radio
+                disableTouchRipple
                 disableRipple
                 checkedIcon={<RadioChecked />}
                 icon={<RadioIcon />}
               />
             }
             label={option}
-            sx={radioStyle(tabletMin)}
           />
         ))}
-      </RadioGroup>
-    </FormControl>
+      </StyledRadioGroup>
+    </StyledFormControl>
   );
 };
 

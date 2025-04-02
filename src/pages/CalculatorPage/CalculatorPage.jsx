@@ -1,4 +1,4 @@
-import { RightSideBar } from "../../components/RightSideBar/RightSideBar";
+import { RightSideBar } from "../../components/RightSideBar";
 import { reactBreakpoints } from "../../styles/breakpoints";
 import {
   Background,

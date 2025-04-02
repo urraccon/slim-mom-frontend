@@ -15,11 +15,13 @@ import {
 import { DiaryAddProductForm } from "./components/DiaryAddProductForm";
 import { DiaryProductList } from "./components/DiaryProductList/DiaryProductList";
 import { useMediaQuery } from "react-responsive";
-import { RightSideBar } from "../../components/RightSideBar/RightSideBar";
+import { RightSideBar } from "../../components/RightSideBar";
 import { reactBreakpoints } from "../../styles/breakpoints";
 
 export const DiaryPage = () => {
-  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
+  const largeMobileMax = useMediaQuery({
+    maxWidth: reactBreakpoints.largeMobileMax,
+  });
   const tablet = useMediaQuery({
     minWidth: reactBreakpoints.tabletMin,
     maxWidth: reactBreakpoints.tabletMax,
@@ -34,7 +36,7 @@ export const DiaryPage = () => {
             <Content>
               <Wrapper>
                 <Block>
-                  {mobileMax && (
+                  {largeMobileMax && (
                     <>
                       <Box>
                         <DiaryDateCalendar />

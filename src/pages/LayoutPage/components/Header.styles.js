@@ -33,7 +33,7 @@ export const PublicContainer = styled.div`
     align-items: center;
   }
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     max-width: 450px;
     width: 87.5%;
   }
@@ -66,7 +66,7 @@ export const PrivateLayout = styled.div`
 export const PrivateContainer = styled.div`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     flex-direction: column;
   }
 
@@ -83,7 +83,7 @@ export const PrivateContainer = styled.div`
 `;
 
 export const PrivateContent = styled.div`
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     border-bottom: 2px solid #e0e0e0;
   }
 
@@ -110,7 +110,7 @@ export const PrivateContent = styled.div`
 export const Box = styled.div`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     justify-content: space-between;
     width: 87.5%;
     max-width: 450px;
@@ -126,7 +126,7 @@ export const Box = styled.div`
     align-items: center;
   }
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}),
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}),
     (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     gap: 20px;
   }

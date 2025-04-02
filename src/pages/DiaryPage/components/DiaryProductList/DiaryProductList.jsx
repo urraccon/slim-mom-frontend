@@ -1,5 +1,5 @@
-import { Container, List, Message } from './DiartyProductList.styles';
-import { DiaryProductListItem } from './components/DiaryProductListItem';
+import { Container, List, Message } from "./DiaryProductList.styles";
+import { DiaryProductListItem } from "./components/DiaryProductListItem";
 // import { useSelector } from 'react-redux';
 // import { selectDiaryProdList } from 'components/redux/diary/selectors';
 
@@ -8,42 +8,42 @@ export const DiaryProductList = () => {
   const diaryProdListMockup = [
     {
       product: {
-        name: 'Eggplant',
+        name: "Eggplant",
         calories: 320,
       },
       quantity: 100,
     },
     {
       product: {
-        name: 'Poultry meat',
+        name: "Poultry meat",
         calories: 480,
       },
       quantity: 100,
     },
     {
       product: {
-        name: 'Bread',
+        name: "Bread",
         calories: 210,
       },
       quantity: 100,
     },
     {
       product: {
-        name: 'Nut',
+        name: "Nut",
         calories: 205,
       },
       quantity: 100,
     },
     {
       product: {
-        name: 'Pork meat',
+        name: "Pork meat",
         calories: 580,
       },
       quantity: 100,
     },
     {
       product: {
-        name: 'Potato',
+        name: "Potato",
         calories: 380,
       },
       quantity: 100,
@@ -57,7 +57,7 @@ export const DiaryProductList = () => {
           {diaryProdListMockup.length === 0 ? (
             <Message>Your diary will be displayed here</Message>
           ) : (
-            diaryProdListMockup.map(diaryProduct => {
+            diaryProdListMockup.map((diaryProduct) => {
               const name = diaryProduct.product.name;
               const calories = diaryProduct.product.calories;
               const quantity = diaryProduct.quantity;

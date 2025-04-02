@@ -5,7 +5,7 @@ import { cssBreakpoints } from "../../styles/breakpoints";
 export const Container = styled.div`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     min-height: 433px;
     height: 42.82vh;
   }
@@ -31,7 +31,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     margin: 40px auto 52px;
     width: 87.28%;
     max-width: 450px;
@@ -55,7 +55,7 @@ export const Content = styled.div`
 export const Wrapper = styled.div`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 40px;
     flex-direction: column;
   }
@@ -122,7 +122,7 @@ export const Message = styled.span`
   color: #9b9faa;
   line-height: 1.25;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     margin-bottom: 18px;
   }
 

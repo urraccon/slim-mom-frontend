@@ -13,30 +13,16 @@ import {
   Content,
   Wrapper,
 } from "./DailyCaloriesIntake.styles";
-import { Divider } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
-import { ButtonComp } from "../../../../components/Button";
-import { reactBreakpoints } from "../../../../styles/breakpoints";
+import { ActionButton } from "../../../../components/ActionButton";
+import { StyledDivider } from "../../../../styles/components/CustomDivider.styles";
 // import { useSelector } from 'react-redux';
 // import {
 //   selectDailyRateCal,
 //   selectRestrictedProdList,
 // } from 'components/redux/diary/selectors';
 
-const linkStyle = {
-  alignSelf: "center",
-};
-
-const dividerStyle = (tabletMin) => ({
-  margin: tabletMin ? "32px 0 12px" : "32px 0 20px",
-  borderBottom: "1px solid #e0e0e0",
-  width: tabletMin ? 330 : "100%",
-});
-
 export const DailyCaloriesIntake = () => {
-  const tabletMin = useMediaQuery({ minWidth: reactBreakpoints.tabletMin });
-
   // const restrictedProdList = useSelector(selectRestrictedProdList);
   // const dailyRateCal = useSelector(selectDailyRateCal);
 
@@ -62,7 +48,7 @@ export const DailyCaloriesIntake = () => {
               <Kcal>kcal</Kcal>
             </Value>
           </DailyRateCal>
-          <Divider sx={dividerStyle(tabletMin)} />
+          <StyledDivider dividerContext="daily-calories-modal" />
           <RestrictedProd>
             <RestrictedProdTitle>Foods you should not eat</RestrictedProdTitle>
             <List>
@@ -79,8 +65,10 @@ export const DailyCaloriesIntake = () => {
               )}
             </List>
           </RestrictedProd>
-          <NavLink to="login" style={linkStyle}>
-            <ButtonComp>Start losing weight</ButtonComp>
+          <NavLink to="login">
+            <ActionButton buttonContext="daily-calories-modal">
+              Start losing weight
+            </ActionButton>
           </NavLink>
         </Content>
       </Wrapper>

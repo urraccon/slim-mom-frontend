@@ -5,17 +5,22 @@ import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage";
 import { DiaryPage } from "./pages/DiaryPage/DiaryPage";
 import { CalculatorPage } from "./pages/CalculatorPage/CalculatorPage";
+import LogoutOnPublicRoutes from "./components/LogoutOnPublicRoutes";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
     <Router basename="/slim-mom-frontend/">
+      <LogoutOnPublicRoutes />
       <Routes>
         <Route path="/" element={<LayoutPage />}>
           <Route index element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
-          <Route path="/diary" element={<DiaryPage />} />
-          <Route path="/calculator" element={<CalculatorPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/diary" element={<DiaryPage />} />
+            <Route path="/calculator" element={<CalculatorPage />} />
+          </Route>
         </Route>
       </Routes>
     </Router>

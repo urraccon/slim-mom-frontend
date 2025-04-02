@@ -6,8 +6,8 @@ export const Item = styled.li``;
 export const Container = styled.div`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
-    align-items: center;
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
+    align-items: end;
     gap: 7px;
     padding-right: 6px;
   }
@@ -15,6 +15,7 @@ export const Container = styled.div`
   @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     gap: 28px;
     padding-right: 36px;
+    align-items: center;
   }
 `;
 
@@ -22,7 +23,7 @@ export const Box = styled.div`
   display: flex;
   width: 100%;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 5px;
     flex-wrap: wrap;
   }
@@ -40,7 +41,7 @@ export const Box = styled.div`
 export const Flex = styled.div`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 5px;
     width: 74.7%;
   }
@@ -64,7 +65,7 @@ export const Name = styled.span`
 
   border-bottom: 1px solid #e0e0e0;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     width: 71.07%;
     padding-bottom: 8px;
   }
@@ -89,7 +90,7 @@ export const Quantity = styled.span`
   color: #212121;
   border-bottom: 1px solid #e0e0e0;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     text-align: center;
     width: 26.06%;
     padding-bottom: 8px;
@@ -116,7 +117,7 @@ export const Calories = styled.span`
   color: #212121;
   border-bottom: 1px solid #e0e0e0;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     padding-bottom: 8px;
     text-align: center;
     width: 23.2%;
@@ -138,7 +139,7 @@ export const Calories = styled.span`
 `;
 
 export const Kcal = styled.span`
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     font-size: 10px;
     letter-spacing: 0.04em;
   }

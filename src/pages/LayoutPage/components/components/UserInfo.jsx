@@ -1,23 +1,33 @@
-import { Divider } from "@mui/material";
 import { Container, LogoutBtn, Username, Wrapper } from "./UserInfo.styles";
 import PropTypes from "prop-types";
+import { StyledDivider } from "../../../../styles/components/CustomDivider.styles";
+import { useLogoutMutation } from "../../../../features/auth/authApi";
+import { clearUser } from "../../../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
-import { logout } from "../../../../store/auth/authThunks";
-
-const dividerStyle = {
-  height: "32px",
-  borderRight: "2px solid #e0e0e0",
-};
+import { setNotification } from "../../../../features/notifications/notificationSlice";
 
 export const UserInfo = ({ username }) => {
+  const [logout] = useLogoutMutation();
   const dispatch = useDispatch();
+
+  async function handleLogout() {
+    try {
+      const { message } = await logout().unwrap();
+      dispatch(clearUser());
+      dispatch(setNotification({ message, type: "success" }));
+    } catch (error) {
+      const errorMessage = error?.data?.message || "Something went wrong";
+      dispatch(setNotification({ message: errorMessage, type: "error" }));
+      console.error("Logout error:", errorMessage);
+    }
+  }
 
   return (
     <Wrapper>
       <Container>
         <Username>{username}</Username>
-        <Divider orientation="vertical" sx={dividerStyle} />
-        <LogoutBtn onClick={() => dispatch(logout())}>Exit</LogoutBtn>
+        <StyledDivider orientation="vertical" dividerContext="user-info" />
+        <LogoutBtn onClick={handleLogout}>Exit</LogoutBtn>
       </Container>
     </Wrapper>
   );

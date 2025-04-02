@@ -8,46 +8,27 @@ import {
 } from "./LoginForm.styles";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { emailValidation, passwordValidation } from "../../../utils/validator";
+import { CustomTextField } from "../../../components/CustomTextField";
+import { ActionButton } from "../../../components/ActionButton";
+import { useLoginMutation } from "../../../features/auth/authApi";
+import { setUser } from "../../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
-import { Field } from "../../../components/Field";
-import { ButtonComp } from "../../../components/Button";
-import { emailValidation, passValidation } from "../../../utils/validator";
-import { login } from "../../../store/auth/authThunks";
-
-const registerBtnStyle = {
-  backgroundColor: "white",
-  border: "2px solid #FC842D",
-  color: "#FC842D",
-};
-
-const btnStyle = {
-  lineHeight: 1.3,
-  padding: 0,
-  width: 182,
-  height: 44,
-};
-
-const fieldStyle = {
-  width: "100%",
-};
-
-const inputStyle = {
-  paddingBottom: 20,
-};
+import { setNotification } from "../../../features/notifications/notificationSlice";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPassword] = useState("");
   const [emailErr, setEmailErr] = useState(false);
-  const [passErr, setPassErr] = useState(false);
-
+  const [passwordErr, setPasswordErr] = useState(false);
+  const [login] = useLoginMutation();
   const dispatch = useDispatch();
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
 
     const emailValid = emailValidation(email);
-    const passValid = passValidation(pass);
+    const passwordValid = passwordValidation(password);
 
     if (!emailValid) {
       setEmailErr(true);
@@ -55,19 +36,26 @@ export const LoginForm = () => {
       setEmailErr(false);
     }
 
-    if (!passValid) {
-      setPassErr(true);
+    if (!passwordValid) {
+      setPasswordErr(true);
     } else {
-      setPassErr(false);
+      setPasswordErr(false);
     }
 
-    if (emailValid && passValid) {
-      const userData = {
-        email,
-        password: pass,
-      };
+    if (emailValid && passwordValid) {
+      try {
+        const { user, message } = await login({ email, password }).unwrap();
 
-      dispatch(login(userData));
+        if (user) {
+          dispatch(setUser(user));
+        }
+
+        dispatch(setNotification({ message, type: "success" }));
+      } catch (error) {
+        const errorMessage = error?.data?.message || "Something went wrong";
+        dispatch(setNotification({ message: errorMessage, type: "error" }));
+        console.error("Login error:", errorMessage);
+      }
     }
   }
 
@@ -77,38 +65,34 @@ export const LoginForm = () => {
         <Title>Log in</Title>
         <Form onSubmit={handleSubmit}>
           <Fields>
-            <Field
+            <CustomTextField
               error={emailErr}
               id="email"
               type="email"
               label="Email *"
-              style={fieldStyle}
               value={email}
               onChange={(evt) => setEmail(evt.target.value)}
-              inputStyle={inputStyle}
             />
-            <Field
-              error={passErr}
+            <CustomTextField
+              error={passwordErr}
               id="password"
               type="password"
               label="Password *"
-              style={fieldStyle}
-              value={pass}
-              onChange={(evt) => setPass(evt.target.value)}
-              inputStyle={inputStyle}
+              value={password}
+              onChange={(evt) => setPassword(evt.target.value)}
             />
           </Fields>
           <Buttons>
-            <ButtonComp type="submit" style={btnStyle}>
+            <ActionButton buttonContext="authentication-form-contained-button">
               Log in
-            </ButtonComp>
+            </ActionButton>
             <NavLink to="/registration">
-              <ButtonComp
+              <ActionButton
                 variant="outlined"
-                style={{ ...btnStyle, ...registerBtnStyle }}
+                buttonContext="authentication-form-outlined-button"
               >
                 Register
-              </ButtonComp>
+              </ActionButton>
             </NavLink>
           </Buttons>
         </Form>

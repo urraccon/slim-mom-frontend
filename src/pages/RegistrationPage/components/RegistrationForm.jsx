@@ -8,53 +8,34 @@ import {
   Title,
   Content,
 } from "./RegistrationForm.styles";
-import { useDispatch } from "react-redux";
-import { Field } from "../../../components/Field";
-import { ButtonComp } from "../../../components/Button";
 import {
   emailValidation,
   nameValidation,
-  registrationPassValidation,
+  registrationPasswordValidation,
 } from "../../../utils/validator";
-import { register } from "../../../store/auth/authThunks";
-
-const loginBtnStyle = {
-  backgroundColor: "white",
-  border: "2px solid #FC842D",
-  color: "#FC842D",
-};
-
-const btnStyle = {
-  padding: 0,
-  width: 182,
-  height: 44,
-  lineHeight: 1.3,
-};
-
-const fieldStyle = {
-  width: "100%",
-};
-
-const inputStyle = {
-  paddingBottom: 20,
-};
+import { CustomTextField } from "../../../components/CustomTextField";
+import { ActionButton } from "../../../components/ActionButton";
+import { useRegisterMutation } from "../../../features/auth/authApi";
+import { setUser } from "../../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../../../features/notifications/notificationSlice";
 
 export const RegistrationForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPassword] = useState("");
   const [nameErr, setNameErr] = useState(false);
   const [emailErr, setEmailErr] = useState(false);
-  const [passErr, setPassErr] = useState(false);
-
+  const [passwordErr, setPasswordErr] = useState(false);
+  const [register] = useRegisterMutation();
   const dispatch = useDispatch();
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
 
     const nameValid = nameValidation(name);
     const emailValid = emailValidation(email);
-    const passValid = registrationPassValidation(pass);
+    const passwordValid = registrationPasswordValidation(password);
 
     if (!nameValid) {
       setNameErr(true);
@@ -68,20 +49,30 @@ export const RegistrationForm = () => {
       setEmailErr(false);
     }
 
-    if (!passValid) {
-      setPassErr(true);
+    if (!passwordValid) {
+      setPasswordErr(true);
     } else {
-      setPassErr(false);
+      setPasswordErr(false);
     }
 
-    if (nameValid && emailValid && passValid) {
-      const userData = {
-        name,
-        email,
-        password: pass,
-      };
+    if (nameValid && emailValid && passwordValid) {
+      try {
+        const { user, message } = await register({
+          name,
+          email,
+          password,
+        }).unwrap();
 
-      dispatch(register(userData));
+        if (user) {
+          dispatch(setUser(user));
+        }
+
+        dispatch(setNotification({ message, type: "success" }));
+      } catch (error) {
+        const errorMessage = error?.data?.message || "Something went wrong";
+        dispatch(setNotification({ message: errorMessage, type: "error" }));
+        console.error("Registration error:", errorMessage);
+      }
     }
   }
 
@@ -91,48 +82,42 @@ export const RegistrationForm = () => {
         <Title>Register</Title>
         <Form onSubmit={handleSubmit}>
           <Fields>
-            <Field
+            <CustomTextField
               error={nameErr}
               id="name"
               type="text"
               label="Name *"
-              style={fieldStyle}
               value={name}
               onChange={(evt) => setName(evt.target.value)}
-              inputStyle={inputStyle}
             />
-            <Field
+            <CustomTextField
               error={emailErr}
               id="email"
               type="email"
               label="Email *"
-              style={fieldStyle}
               value={email}
               onChange={(evt) => setEmail(evt.target.value)}
-              inputStyle={inputStyle}
             />
-            <Field
-              error={passErr}
+            <CustomTextField
+              error={passwordErr}
               id="password"
               type="password"
               label="Password *"
-              style={fieldStyle}
-              value={pass}
-              onChange={(evt) => setPass(evt.target.value)}
-              inputStyle={inputStyle}
+              value={password}
+              onChange={(evt) => setPassword(evt.target.value)}
             />
           </Fields>
           <Buttons>
-            <ButtonComp type="submit" style={btnStyle}>
+            <ActionButton buttonContext="authentication-form-contained-button">
               Register
-            </ButtonComp>
+            </ActionButton>
             <NavLink to="/login">
-              <ButtonComp
+              <ActionButton
                 variant="outlined"
-                style={{ ...btnStyle, ...loginBtnStyle }}
+                buttonContext="authentication-form-outlined-button"
               >
                 Log in
-              </ButtonComp>
+              </ActionButton>
             </NavLink>
           </Buttons>
         </Form>

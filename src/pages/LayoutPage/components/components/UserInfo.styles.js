@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { cssBreakpoints } from "../../../../styles/breakpoints";
 
 export const Wrapper = styled.div`
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     height: 40px;
     background-color: #eff1f3;
     display: flex;
@@ -20,7 +20,7 @@ export const Container = styled.ul`
   display: flex;
   align-items: end;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 16px;
     max-width: 450px;
 

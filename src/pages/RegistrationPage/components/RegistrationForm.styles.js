@@ -36,7 +36,7 @@ export const Content = styled.div`
   gap: 55px;
   margin: auto;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     align-items: center;
     padding-top: 40px;
     max-width: 450px;
@@ -95,7 +95,7 @@ export const Fields = styled.div`
 export const Buttons = styled.div`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     flex-direction: column;
     gap: 20px;
     align-items: center;

@@ -10,7 +10,7 @@ import {
   Content,
   Block,
   Wrapper,
-} from "./RightSideBar.styles";
+} from "../styles/components/RightSideBar.styles";
 // import { useSelector } from "react-redux";
 // import {
 //   selectDailyRateCal,

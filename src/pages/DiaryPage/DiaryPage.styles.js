@@ -54,7 +54,7 @@ export const Layout = styled.div`
       background: #264061;
     }
 
-    @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+    @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
       height: calc(100vh - 121.6px);
       top: 121.6px;
     }
@@ -73,7 +73,7 @@ export const Container = styled.div`
   display: flex;
   height: 100%;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 60px;
   }
 
@@ -96,7 +96,7 @@ export const Container = styled.div`
 export const Content = styled.section`
   display: flex;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     margin: 40px auto 0;
     width: 87.5%;
     max-width: 450px;
@@ -155,7 +155,7 @@ export const Box = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 32px;
   }
 

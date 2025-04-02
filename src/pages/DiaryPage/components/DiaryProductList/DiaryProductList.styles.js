@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { cssBreakpoints } from "../../../../styles/breakpoints";
 
 export const Container = styled.div`
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     height: 204.5px;
     overflow: auto;
 
@@ -27,7 +27,7 @@ export const List = styled.ul`
   padding: 0;
   margin: 0;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 20px;
   }
 

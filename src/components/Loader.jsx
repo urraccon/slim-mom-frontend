@@ -1,24 +1,26 @@
-import { Backdrop, CircularProgress } from "@mui/material";
-import { useSelector } from "react-redux";
-import { selectAuthStatus } from "../store/auth/authSelectors";
-
-const backdropStyle = {
-  color: "#fff",
-  zIndex: (theme) => theme.zIndex.drawer + 1,
-};
-
-const loadingStyle = {
-  color: "#FC842D",
-};
+import { StyledCircularProgress } from "../styles/components/Loader.styles";
+import { Backdrop } from "@mui/material";
+import { useGetProductsQuery } from "../features/diary/productsApi";
+import {
+  useLoginMutation,
+  useLogoutMutation,
+  useRegisterMutation,
+} from "../features/auth/authApi";
 
 export const Loader = () => {
-  const status = useSelector(selectAuthStatus);
+  const { isLoading: isLoadingLogin } = useLogoutMutation();
+  const { isLoading: isLoadingLogout } = useLoginMutation();
+  const { isLoading: isLoadingRegister } = useRegisterMutation();
+  const { isLoading: isLoadingProducts } = useGetProductsQuery();
+
+  const isLoading =
+    isLoadingLogin || isLoadingLogout || isLoadingRegister || isLoadingProducts;
 
   return (
     <>
-      {status === "loading" && (
-        <Backdrop sx={backdropStyle} open={true}>
-          <CircularProgress sx={loadingStyle} />
+      {isLoading && (
+        <Backdrop open={true}>
+          <StyledCircularProgress />
         </Backdrop>
       )}
     </>

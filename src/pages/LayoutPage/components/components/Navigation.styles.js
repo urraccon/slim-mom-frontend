@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { cssBreakpoints } from "../../../../styles/breakpoints";
+import { NavLink } from "react-router-dom";
 
 export const NavMenu = styled.ul`
   margin: 0;
@@ -9,7 +10,7 @@ export const NavMenu = styled.ul`
   align-items: end;
   flex-wrap: wrap;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     padding: 9px 0 0 0;
   }
 
@@ -51,7 +52,7 @@ export const OverlayNavContainer = styled.div`
   align-items: center;
   height: inherit;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     min-height: 488px;
   }
 
@@ -69,7 +70,7 @@ export const OverlayNavMenu = styled.ul`
   gap: 28px;
   width: fit-content;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     margin: 60px auto 356px;
   }
 
@@ -96,11 +97,46 @@ export const OverlayNavBtn = styled.li`
     color: white;
   }
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     font-size: 18px;
   }
 
   @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     font-size: 24px;
   }
+`;
+
+export const StyledNavLink = styled(NavLink).withConfig({
+  shouldForwardProp: (prop) => !["navLinkContext"].includes(prop),
+})`
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  outline: none;
+  cursor: pointer;
+
+  ${({ navLinkContext }) => {
+    switch (navLinkContext) {
+      case "header":
+        return `
+  &.active {
+    color: #212121;
+  }
+        `;
+
+      case "overlay":
+        return `
+  &.active {
+    color: white;
+  }
+        `;
+
+      default:
+        return null;
+    }
+  }}
 `;

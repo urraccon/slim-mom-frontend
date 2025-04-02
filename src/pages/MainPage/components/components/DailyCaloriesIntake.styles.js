@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     height: 596.8px;
     margin: auto;
   }
@@ -26,7 +26,7 @@ export const Container = styled.div`
     background: #264061;
   }
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     position: absolute;
     top: 40px;
     height: calc(100vh - 121.6px);
@@ -40,8 +40,9 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     width: 87.5%;
     margin: 0 auto;
     max-width: 450px;
@@ -50,7 +51,6 @@ export const Content = styled.div`
 
   @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     margin: 64px 82px 79px;
-    align-items: center;
   }
 `;
 
@@ -58,7 +58,7 @@ export const DailyRateCal = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     gap: 41px;
   }
 
@@ -71,7 +71,7 @@ export const DailyRateCalTitle = styled.h4`
   margin: 0;
   color: #212121;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     font-size: 18px;
     line-height: 1.4em;
   }
@@ -107,7 +107,7 @@ export const RestrictedProd = styled.div`
   gap: 20px;
   margin-bottom: 40px;
 
-  @media screen and (max-width: ${cssBreakpoints.lengths.mobileMax}) {
+  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     width: 100%;
   }
 

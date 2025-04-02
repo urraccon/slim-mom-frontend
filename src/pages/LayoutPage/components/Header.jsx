@@ -10,25 +10,17 @@ import {
 } from "./Header.styles";
 import { Logo } from "./components/Logo";
 import { Navigation } from "./components/Navigation";
-import { Divider } from "@mui/material";
 import { UserInfo } from "./components/UserInfo";
 import { reactBreakpoints } from "../../../styles/breakpoints";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import {
-  selectIsAuthenticated,
-  selectUser,
-} from "../../../store/auth/authSelectors";
-import { useNavigate } from "react-router-dom";
-
-const dividerStyle = {
-  height: 32,
-  border: 0,
-  borderLeft: "2px solid #e0e0e0",
-};
+import { useState } from "react";
+import AuthRedirect from "../../../components/AuthRedirect";
+import { StyledDivider } from "../../../styles/components/CustomDivider.styles";
 
 export const Header = () => {
-  const mobileMax = useMediaQuery({ maxWidth: reactBreakpoints.mobileMax });
+  const largeMobileMax = useMediaQuery({
+    maxWidth: reactBreakpoints.largeMobileMax,
+  });
   const tablet = useMediaQuery({
     maxWidth: reactBreakpoints.tabletMax,
     minWidth: reactBreakpoints.tabletMin,
@@ -36,89 +28,78 @@ export const Header = () => {
   const desktopMin = useMediaQuery({ minWidth: reactBreakpoints.desktopMin });
 
   const [privacy, setPrivacy] = useState("public");
-  const [username, setUsername] = useState("");
+  const user = useSelector((state) => state.auth.user);
 
-  const user = useSelector(selectUser);
-  const isAuthenticated = useSelector(selectIsAuthenticated);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      setPrivacy("private");
-      navigate("/calculator");
-    } else {
-      setPrivacy("public");
-      navigate("/");
-    }
-  }, [isAuthenticated]);
-
-  useEffect(() => {
-    if (user) {
-      setUsername(user.name);
-    } else {
-      setUsername("");
-    }
-  }, [user]);
+  const username = user?.name;
 
   return (
-    <Section>
-      {privacy === "public" && (
-        <>
-          <PublicLayout>
-            <PublicContainer>
-              <Logo privacy="public" />
-              {desktopMin && (
-                <>
-                  <Divider orientation="vertical" sx={dividerStyle} />
-                </>
-              )}
-              <Navigation privacy="public" />
-            </PublicContainer>
-          </PublicLayout>
-        </>
-      )}
-      {privacy === "private" && (
-        <>
-          <PrivateLayout>
-            <PrivateContainer>
-              {mobileMax && (
-                <>
-                  <PrivateContent>
-                    <Box>
-                      <Logo privacy="private" />
-                      <Navigation privacy="private" />
-                    </Box>
-                  </PrivateContent>
-                  <UserInfo username={username} />
-                </>
-              )}
-              {tablet && (
-                <>
-                  <PrivateContent>
-                    <Logo privacy="private" />
-                    <Box>
-                      <UserInfo username={username} />
-                      <Navigation privacy="private" />
-                    </Box>
-                  </PrivateContent>
-                </>
-              )}
-              {desktopMin && (
-                <>
-                  <PrivateContent>
-                    <Box>
-                      <Logo privacy="private" />
-                      <Divider orientation="vertical" sx={dividerStyle} />
-                      <Navigation privacy="private" />
-                    </Box>
+    <>
+      <AuthRedirect setPrivacy={setPrivacy} />
+      <Section>
+        {privacy === "public" && (
+          <>
+            <PublicLayout>
+              <PublicContainer>
+                <Logo privacy="public" />
+                {desktopMin && (
+                  <>
+                    <StyledDivider
+                      orientation="vertical"
+                      dividerContext="header"
+                    />
+                  </>
+                )}
+                <Navigation privacy="public" />
+              </PublicContainer>
+            </PublicLayout>
+          </>
+        )}
+        {privacy === "private" && (
+          <>
+            <PrivateLayout>
+              <PrivateContainer>
+                {largeMobileMax && (
+                  <>
+                    <PrivateContent>
+                      <Box>
+                        <Logo privacy="private" />
+                        <Navigation privacy="private" />
+                      </Box>
+                    </PrivateContent>
                     <UserInfo username={username} />
-                  </PrivateContent>
-                </>
-              )}
-            </PrivateContainer>
-          </PrivateLayout>
-        </>
-      )}
-    </Section>
+                  </>
+                )}
+                {tablet && (
+                  <>
+                    <PrivateContent>
+                      <Logo privacy="private" />
+                      <Box>
+                        <UserInfo username={username} />
+                        <Navigation privacy="private" />
+                      </Box>
+                    </PrivateContent>
+                  </>
+                )}
+                {desktopMin && (
+                  <>
+                    <PrivateContent>
+                      <Box>
+                        <Logo privacy="private" />
+                        <StyledDivider
+                          orientation="vertical"
+                          dividerContext="header"
+                        />
+                        <Navigation privacy="private" />
+                      </Box>
+                      <UserInfo username={username} />
+                    </PrivateContent>
+                  </>
+                )}
+              </PrivateContainer>
+            </PrivateLayout>
+          </>
+        )}
+      </Section>
+    </>
   );
 };
