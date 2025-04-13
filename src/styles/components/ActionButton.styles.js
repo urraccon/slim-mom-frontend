@@ -62,9 +62,21 @@ export const StyledCustomButton = styled(Button).withConfig({
       case "product-form-icon-button":
         return `
   &.MuiButtonBase-root {
-    min-width: 0;
+    min-width: 48px;
     padding: 12.5px;
     align-self: center;
+  }
+
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
+    &.MuiButton-root {
+      margin-right: 107px;
+    }
+  }
+
+  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
+    &.MuiButton-root {
+      margin-right: 110.2px;
+    }
   }
     `;
 

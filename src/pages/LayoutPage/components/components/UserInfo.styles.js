@@ -52,6 +52,10 @@ export const Username = styled.li`
   color: #212121;
   text-transform: capitalize;
   line-height: 1.2;
+  max-width: 26.5vw;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 export const LogoutBtn = styled.li`

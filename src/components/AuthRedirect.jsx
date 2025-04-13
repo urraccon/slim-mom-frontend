@@ -2,10 +2,11 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
+import { selectIsAuthenticated } from "../features/auth/authSelectors";
 
 const AuthRedirect = ({ setPrivacy }) => {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   const prevAuthState = useRef(isAuthenticated);
 

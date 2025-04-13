@@ -77,13 +77,19 @@ export const StyledTextField = styled(TextField).withConfig({
         return `
   @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     &.MuiTextField-root {
-      width: 30.16%;
+      margin-right: 87px;
+    }
+  }
+
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
+    &.MuiTextField-root {
+      width: 17.37%;
     }
   }
 
   @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     &.MuiTextField-root {
-      width: 30.15%;
+      margin-right: 60px;
     }
   }
 

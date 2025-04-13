@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Box, Container, Fields, Form } from "./DiaryAddProductForm.styles";
-// import dayjs from "dayjs";
-// import { useDispatch } from "react-redux";
 import { quantityValidation } from "../../../utils/validator";
-// import { addProduct } from "../../../store/diary/diaryActions";
 import { reactBreakpoints } from "../../../styles/breakpoints";
-
 import { CustomAutocomplete } from "../../../components/CustomAutocomplete";
 import { CustomTextField } from "../../../components/CustomTextField";
 import { ActionButton } from "../../../components/ActionButton";
 import { CustomModal } from "../../../components/CustomModal";
-import { useGetProductsQuery } from "../../../features/diary/productsApi";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectProducts,
+  setProducts,
+} from "../../../features/product/productSlice";
+import { useGetProductsQuery } from "../../../features/product/productApi";
+import { todayDayjs } from "../../../utils/dateUtils";
+import { useAddEntryMutation } from "../../../features/diary/diaryApi";
 
 export const DiaryAddProductForm = () => {
   const largeMobileMax = useMediaQuery({
@@ -23,7 +26,31 @@ export const DiaryAddProductForm = () => {
   const [quantity, setQuantity] = useState("");
   const [quantityErr, setQuantityErr] = useState(null);
   const [product, setProduct] = useState(null);
-  const { data: options } = useGetProductsQuery();
+  const [options, setOptions] = useState([]);
+  const products = useSelector(selectProducts);
+  const { data } = useGetProductsQuery();
+  const dispatch = useDispatch();
+  const [addEntry, { isSuccess }] = useAddEntryMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      setOpen(false);
+      setProduct(null);
+      setQuantity("");
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setProducts(data));
+    }
+  }, [data, dispatch]);
+
+  useEffect(() => {
+    if (products) {
+      setOptions(products);
+    }
+  }, [products]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -42,17 +69,16 @@ export const DiaryAddProductForm = () => {
       setQuantityErr(false);
     }
 
-    // if (prodNameValid && quantityValid) {
-    //   const now = dayjs();
+    if (product && quantityValid) {
+      const today = todayDayjs();
+      const newEntry = {
+        product,
+        quantity,
+        date: today,
+      };
 
-    //   const productData = {
-    //     productName,
-    //     quantity,
-    //     date: now,
-    //   };
-
-    //   dispatch(addProduct(productData));
-    // }
+      addEntry(newEntry);
+    }
   }
 
   return (
@@ -65,7 +91,7 @@ export const DiaryAddProductForm = () => {
             iconName="add-icon"
           />
           <CustomModal
-            modalType="add-product"
+            modalContext="add-product"
             open={open}
             onClose={() => setOpen(false)}
           >
@@ -101,25 +127,23 @@ export const DiaryAddProductForm = () => {
         </>
       ) : (
         <Form onSubmit={handleSubmit}>
-          <Fields>
-            <CustomAutocomplete
-              options={options}
-              value={product}
-              onChange={(_, newValue) => setProduct(newValue)}
-              label="Enter product name"
-              id="product"
-              error={productErr}
-              textFieldContext="product-form-product-field"
-            />
-            <CustomTextField
-              error={quantityErr}
-              id="quantity"
-              label="Grams"
-              value={quantity}
-              onChange={(evt) => setQuantity(evt.target.value)}
-              textFieldContext="product-form-quantity-field"
-            />
-          </Fields>
+          <CustomAutocomplete
+            options={options}
+            value={product}
+            onChange={(_, newValue) => setProduct(newValue)}
+            label="Enter product name"
+            id="product"
+            error={productErr}
+            textFieldContext="product-form-product-field"
+          />
+          <CustomTextField
+            error={quantityErr}
+            id="quantity"
+            label="Grams"
+            value={quantity}
+            onChange={(evt) => setQuantity(evt.target.value)}
+            textFieldContext="product-form-quantity-field"
+          />
           <ActionButton
             buttonContext="product-form-icon-button"
             iconName="add-icon"

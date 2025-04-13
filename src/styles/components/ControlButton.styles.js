@@ -36,7 +36,15 @@ export const StyledControlButton = styled(Button).withConfig({
         return `
   @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
     &.MuiButtonBase-root {
-      margin-bottom: 5px;
+      margin: 0 12px 5px 0;
+      min-width: 17px;
+    }
+  }
+
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
+    &.MuiButtonBase-root {
+      min-width: 20px;
+      margin-right: 40px
     }
   }
         `;
@@ -80,7 +88,7 @@ export const StyledCloseIcon = styled(Close).withConfig({
         return `
   &.MuiSvgIcon-root {
     stroke: #9b9faa;
-    strokewidth: 1px;
+    stroke-width: 1px;
     fill: #9b9faa;
   }
 

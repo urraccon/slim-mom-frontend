@@ -1,70 +1,70 @@
 import {
   Container,
-  DailyRateCal,
-  DailyRateCalTitle,
   Value,
   Item,
   List,
   Kcal,
-  RestrictedProd,
-  RestrictedProdTitle,
   Space,
   Text,
   Content,
   Wrapper,
+  RestrictedFoods,
+  RestrictedFoodsTitle,
+  RecommendedCalories,
+  RecommendedCaloriesTitle,
 } from "./DailyCaloriesIntake.styles";
 import { NavLink } from "react-router-dom";
 import { ActionButton } from "../../../../components/ActionButton";
 import { StyledDivider } from "../../../../styles/components/CustomDivider.styles";
-// import { useSelector } from 'react-redux';
-// import {
-//   selectDailyRateCal,
-//   selectRestrictedProdList,
-// } from 'components/redux/diary/selectors';
+import { useSelector } from "react-redux";
+import { selectHealthData } from "../../../../features/health/healthSlice";
+import { useEffect, useState } from "react";
 
 export const DailyCaloriesIntake = () => {
-  // const restrictedProdList = useSelector(selectRestrictedProdList);
-  // const dailyRateCal = useSelector(selectDailyRateCal);
+  const healthData = useSelector(selectHealthData);
+  const [recommendedCalories, setRecommendedCalories] = useState(0);
+  const [restrictedFoods, setRestrictedFoods] = useState([]);
 
-  const restrictedProdList = [
-    "flour products",
-    "milk",
-    "read meat",
-    "smoked meats",
-  ];
-  const dailyRateCal = 2800;
+  useEffect(() => {
+    if (healthData) {
+      setRecommendedCalories(healthData.recommendedCalories);
+      setRestrictedFoods(healthData.restrictedFoods);
+    }
+  }, [healthData]);
 
   return (
     <Container>
       <Wrapper>
         <Content>
-          <DailyRateCal>
-            <DailyRateCalTitle>
+          <RecommendedCalories>
+            <RecommendedCaloriesTitle>
               Your recommended daily calorie intake is
-            </DailyRateCalTitle>
+            </RecommendedCaloriesTitle>
             <Value>
-              {dailyRateCal === null ? "0" : dailyRateCal}
+              {recommendedCalories}
               <Space> </Space>
               <Kcal>kcal</Kcal>
             </Value>
-          </DailyRateCal>
+          </RecommendedCalories>
           <StyledDivider dividerContext="daily-calories-modal" />
-          <RestrictedProd>
-            <RestrictedProdTitle>Foods you should not eat</RestrictedProdTitle>
+          <RestrictedFoods>
+            <RestrictedFoodsTitle>
+              Foods you should not eat
+            </RestrictedFoodsTitle>
             <List>
-              {restrictedProdList.length === 0 ? (
+              {restrictedFoods.length === 0 ? (
                 <Text>Your diet will be displayed here</Text>
               ) : (
-                restrictedProdList?.map((restrictedProduct) => (
-                  <Item key={restrictedProdList.indexOf(restrictedProduct)}>
-                    {`${
-                      restrictedProdList.indexOf(restrictedProduct) + 1
-                    }. ${restrictedProduct}`}
+                restrictedFoods.map((restrictedFood) => (
+                  <Item key={restrictedFood._id}>
+                    {`${restrictedFoods.indexOf(restrictedFood) + 1}. ${
+                      restrictedFood.title
+                    }`}
                   </Item>
                 ))
               )}
             </List>
-          </RestrictedProd>
+          </RestrictedFoods>
           <NavLink to="login">
             <ActionButton buttonContext="daily-calories-modal">
               Start losing weight

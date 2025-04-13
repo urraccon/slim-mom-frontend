@@ -46,7 +46,7 @@ export const Navigation = ({ privacy }) => {
             ) : (
               <ControlButton onClick={() => setOpen(true)} iconName="menu" />
             )}
-            <CustomModal open={open} modalType="navigation">
+            <CustomModal open={open} modalContext="navigation">
               <OverlayNavContainer>
                 <OverlayNavMenu>
                   <OverlayNavBtn>

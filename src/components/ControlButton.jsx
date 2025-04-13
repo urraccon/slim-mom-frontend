@@ -11,6 +11,7 @@ export const ControlButton = ({
   onClick,
   iconName,
   iconContext,
+  id,
 }) => {
   let icon;
 
@@ -33,6 +34,7 @@ export const ControlButton = ({
 
   return (
     <StyledControlButton
+      id={id}
       buttonContext={buttonContext}
       onClick={onClick}
       disableRipple
@@ -47,4 +49,5 @@ ControlButton.propTypes = {
   onClick: PropTypes.func,
   iconName: PropTypes.string,
   iconContext: PropTypes.string,
+  id: PropTypes.string,
 };

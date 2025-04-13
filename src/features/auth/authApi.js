@@ -1,31 +1,66 @@
 import { apiSlice } from "../../api/apiSlice";
+import { store } from "../../store/store";
+import { healthApi } from "../health/healthApi";
+import { clearUser, setUser } from "./authSlice";
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     register: builder.mutation({
-      query: (userData) => ({
+      query: (formData) => ({
         url: "/auth/register",
         method: "POST",
-        body: userData,
+        body: formData,
       }),
-      transformResponse: (response) => {
-        return {
-          message: response.message,
-          user: response.user,
-        };
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUser(data.user));
+
+          const state = store.getState();
+          const { height, age, currentWeight, desiredWeight, bloodType } =
+            state.health.healthData;
+
+          if (height && age && currentWeight && desiredWeight && bloodType) {
+            dispatch(
+              healthApi.endpoints.saveHealthData.initiate({
+                height,
+                age,
+                currentWeight,
+                desiredWeight,
+                bloodType,
+              })
+            );
+          }
+        } catch {}
       },
     }),
     login: builder.mutation({
-      query: (userData) => ({
+      query: (formData) => ({
         url: "/auth/login",
         method: "POST",
-        body: userData,
+        body: formData,
       }),
-      transformResponse: (response) => {
-        return {
-          message: response.message,
-          user: response.user,
-        };
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUser(data.user));
+
+          const state = store.getState();
+          const { height, age, currentWeight, desiredWeight, bloodType } =
+            state.health.healthData;
+
+          if (height && age && currentWeight && desiredWeight && bloodType) {
+            dispatch(
+              healthApi.endpoints.saveHealthData.initiate({
+                height,
+                age,
+                currentWeight,
+                desiredWeight,
+                bloodType,
+              })
+            );
+          }
+        } catch {}
       },
     }),
     logout: builder.mutation({
@@ -33,10 +68,11 @@ export const authApi = apiSlice.injectEndpoints({
         url: "/auth/logout",
         method: "POST",
       }),
-      transformResponse: (response) => {
-        return {
-          message: response.message,
-        };
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(clearUser());
+        } catch {}
       },
     }),
   }),

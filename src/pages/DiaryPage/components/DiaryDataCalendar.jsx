@@ -4,18 +4,25 @@ import {
   StyledDateCalendar,
   StyledPaper,
 } from "./DiaryDateCalendar.styles";
-import { DateCalendar, LocalizationProvider } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs from "dayjs";
-import updateLocale from "dayjs/plugin/updateLocale";
-import { useState } from "react";
-import { ClickAwayListener, Paper, Popover } from "@mui/material";
+import { useEffect, useState } from "react";
+import { ClickAwayListener, Popover } from "@mui/material";
 import { ControlButton } from "../../../components/ControlButton";
-
-dayjs.extend(updateLocale);
-dayjs.updateLocale("en", {
-  weekStart: 1,
-});
+import {
+  formatDateToISO,
+  formatDateToUI,
+  isSameDay,
+  parseToDayjs,
+  todayDayjs,
+} from "../../../utils/dateUtils";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectSelectedDate,
+  setSelectedDate,
+} from "../../../features/date/dateSlice";
+import { useGetEntriesByDateQuery } from "../../../features/diary/diaryApi";
+import { setEntries } from "../../../features/diary/diarySlice";
 
 const dateCalProps = {
   day: {
@@ -36,13 +43,27 @@ const dateCalProps = {
 };
 
 export const DiaryDateCalendar = () => {
-  const now = dayjs();
-
+  const today = todayDayjs();
   const [open, setOpen] = useState(false);
   const [target, setTarget] = useState(null);
-  const [date, setDate] = useState(now);
+  const [date, setDate] = useState(today);
+  const selectedDate = useSelector(selectSelectedDate);
+  const dispatch = useDispatch();
+  const isoDate = formatDateToISO(date);
+  const { data } = useGetEntriesByDateQuery(isoDate);
+  const formattedDate = formatDateToUI(date);
 
-  const formattedDate = dayjs(date).format("DD.MM.YYYY");
+  useEffect(() => {
+    if (data) {
+      dispatch(setEntries(data));
+    }
+  }, [data, dispatch]);
+
+  useEffect(() => {
+    if (selectedDate) {
+      setDate(parseToDayjs(selectedDate));
+    }
+  }, [selectedDate]);
 
   function handleClick(evt) {
     setOpen(true);
@@ -50,12 +71,12 @@ export const DiaryDateCalendar = () => {
   }
 
   function handleChange(newDate) {
-    const oldDay = dayjs(date).format("D");
-    const newDay = dayjs(newDate).format("D");
+    const matchDates = isSameDay(date, newDate);
+    const isoNewDate = formatDateToISO(newDate);
 
-    if (oldDay !== newDay) {
+    if (!matchDates) {
       setOpen(false);
-      setDate(newDate);
+      dispatch(setSelectedDate(isoNewDate));
     }
   }
 
@@ -87,6 +108,7 @@ export const DiaryDateCalendar = () => {
                 value={date}
                 onChange={handleChange}
                 slotProps={dateCalProps}
+                maxDate={today}
               />
             </LocalizationProvider>
           </StyledPaper>

@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   justify-content: center;
 
   @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
-    height: 596.8px;
     margin: auto;
   }
 `;
@@ -46,7 +45,8 @@ export const Content = styled.div`
     width: 87.5%;
     margin: 0 auto;
     max-width: 450px;
-    padding-top: 40px;
+    padding: 40px 0 119px;
+    height: fit-content;
   }
 
   @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
@@ -54,7 +54,7 @@ export const Content = styled.div`
   }
 `;
 
-export const DailyRateCal = styled.div`
+export const RecommendedCalories = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -67,7 +67,7 @@ export const DailyRateCal = styled.div`
   }
 `;
 
-export const DailyRateCalTitle = styled.h4`
+export const RecommendedCaloriesTitle = styled.h4`
   margin: 0;
   color: #212121;
 
@@ -101,7 +101,7 @@ export const Kcal = styled.span`
   font-size: 16px;
 `;
 
-export const RestrictedProd = styled.div`
+export const RestrictedFoods = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -116,7 +116,7 @@ export const RestrictedProd = styled.div`
   }
 `;
 
-export const RestrictedProdTitle = styled.p`
+export const RestrictedFoodsTitle = styled.p`
   margin: 0;
   font-size: 14px;
   font-weight: bold;
@@ -132,6 +132,20 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 14px;
+  max-height: 112px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #264061;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f0f1f3;
+  }
 `;
 
 export const Item = styled.li`
@@ -140,6 +154,7 @@ export const Item = styled.li`
   color: #9b9faa;
   text-transform: capitalize;
   line-height: 1.25;
+  padding-right: 25px;
 `;
 
 export const Text = styled.p`

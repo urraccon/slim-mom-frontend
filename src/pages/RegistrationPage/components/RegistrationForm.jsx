@@ -16,9 +16,6 @@ import {
 import { CustomTextField } from "../../../components/CustomTextField";
 import { ActionButton } from "../../../components/ActionButton";
 import { useRegisterMutation } from "../../../features/auth/authApi";
-import { setUser } from "../../../features/auth/authSlice";
-import { useDispatch } from "react-redux";
-import { setNotification } from "../../../features/notifications/notificationSlice";
 
 export const RegistrationForm = () => {
   const [name, setName] = useState("");
@@ -28,9 +25,8 @@ export const RegistrationForm = () => {
   const [emailErr, setEmailErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
   const [register] = useRegisterMutation();
-  const dispatch = useDispatch();
 
-  async function handleSubmit(evt) {
+  function handleSubmit(evt) {
     evt.preventDefault();
 
     const nameValid = nameValidation(name);
@@ -56,23 +52,7 @@ export const RegistrationForm = () => {
     }
 
     if (nameValid && emailValid && passwordValid) {
-      try {
-        const { user, message } = await register({
-          name,
-          email,
-          password,
-        }).unwrap();
-
-        if (user) {
-          dispatch(setUser(user));
-        }
-
-        dispatch(setNotification({ message, type: "success" }));
-      } catch (error) {
-        const errorMessage = error?.data?.message || "Something went wrong";
-        dispatch(setNotification({ message: errorMessage, type: "error" }));
-        console.error("Registration error:", errorMessage);
-      }
+      register({ name, email, password });
     }
   }
 

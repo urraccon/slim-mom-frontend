@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import {
   Container,
   Item,
@@ -11,23 +10,48 @@ import {
   Block,
   Wrapper,
 } from "../styles/components/RightSideBar.styles";
-// import { useSelector } from "react-redux";
-// import {
-//   selectDailyRateCal,
-//   selectRestrictedProdList,
-// } from "../../store/diary/diarySelectors";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { selectUserHealthData } from "../features/auth/authSelectors";
+import { selectSelectedDate } from "../features/date/dateSlice";
+import { formatDateToUI, todayDayjs } from "../utils/dateUtils";
+import { selectEntries } from "../features/diary/diarySlice";
+import { calculateTotalCalories } from "../utils/calorieUtils";
 
 export const RightSideBar = () => {
-  // const restrictedProdList = useSelector(selectRestrictedProdList);
-  // const dailyRateCal = useSelector(selectDailyRateCal);
-  const restrictedProdList = [];
-  const dailyRateCal = 0;
+  const today = todayDayjs();
+  const healthData = useSelector(selectUserHealthData);
+  const selectedDate = useSelector(selectSelectedDate);
+  const [recommendedCalories, setRecommendedCalories] = useState(0);
+  const [restrictedFoods, setRestrictedFoods] = useState([]);
+  const [date, setDate] = useState(today);
+  const [consumedCalories, setConsumedCalories] = useState(0);
+  const entries = useSelector(selectEntries);
+  const leftCalories = recommendedCalories - consumedCalories;
+  const caloriesIntake = Math.round(
+    (consumedCalories / recommendedCalories) * 100
+  );
+  const formattedDate = formatDateToUI(date);
 
-  const date = dayjs();
-  const formattedDate = dayjs(date).format("DD.MM.YYYY");
-  const consumedCal = 0;
-  const leftCal = dailyRateCal - consumedCal;
-  const calIntakePercentage = Math.round((consumedCal / dailyRateCal) * 100);
+  useEffect(() => {
+    if (entries) {
+      const caloriesSum = calculateTotalCalories(entries);
+      setConsumedCalories(caloriesSum);
+    }
+  }, [entries]);
+
+  useEffect(() => {
+    if (healthData) {
+      setRecommendedCalories(healthData.recommendedCalories);
+      setRestrictedFoods(healthData.restrictedFoods);
+    }
+  }, [healthData]);
+
+  useEffect(() => {
+    if (selectedDate) {
+      setDate(selectedDate);
+    }
+  }, [selectedDate]);
 
   return (
     <Container>
@@ -39,48 +63,40 @@ export const RightSideBar = () => {
               <Item>
                 <Box>
                   <TextWrapper>Left</TextWrapper>
-                  <TextWrapper>
-                    {leftCal === 0 ? "000" : leftCal} kcal
-                  </TextWrapper>
+                  <TextWrapper>{Math.round(leftCalories)} kcal</TextWrapper>
                 </Box>
               </Item>
               <Item>
                 <Box>
                   <TextWrapper>Consumed</TextWrapper>
-                  <TextWrapper>
-                    {consumedCal === null ? "000" : consumedCal} kcal
-                  </TextWrapper>
+                  <TextWrapper>{Math.round(consumedCalories)} kcal</TextWrapper>
                 </Box>
               </Item>
               <Item>
                 <Box>
                   <TextWrapper>Daily rate</TextWrapper>
-                  <TextWrapper>
-                    {dailyRateCal === null ? "000" : dailyRateCal} kcal
-                  </TextWrapper>
+                  <TextWrapper>{recommendedCalories} kcal</TextWrapper>
                 </Box>
               </Item>
               <Item>
                 <Box>
                   <TextWrapper>n% of normal</TextWrapper>
-                  <TextWrapper>
-                    {isNaN(calIntakePercentage) === true
-                      ? "000 kcal"
-                      : `${calIntakePercentage}%`}
-                  </TextWrapper>
+                  <TextWrapper>{`${caloriesIntake}%`}</TextWrapper>
                 </Box>
               </Item>
             </List>
           </Block>
           <Block>
             <Title>Food not recommended</Title>
-            <List>
-              {restrictedProdList?.length === 0 ? (
+            <List listContext="restricted-foods">
+              {restrictedFoods?.length === 0 ? (
                 <Message>Your diet will be displayed here</Message>
               ) : (
-                restrictedProdList?.map((restrictedProduct) => (
-                  <Item key={restrictedProdList.indexOf(restrictedProduct)}>
-                    <TextWrapper>{restrictedProduct}</TextWrapper>
+                restrictedFoods?.map((restrictedFood) => (
+                  <Item key={restrictedFood._id} itemContext="restricted-foods">
+                    <TextWrapper textContext="restricted-foods">
+                      {restrictedFood.title}
+                    </TextWrapper>
                   </Item>
                 ))
               )}

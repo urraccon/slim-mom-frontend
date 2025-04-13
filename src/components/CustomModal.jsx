@@ -2,35 +2,41 @@ import PropTypes from "prop-types";
 import { useMediaQuery } from "react-responsive";
 import { reactBreakpoints } from "../styles/breakpoints";
 import {
-  StyledAddProductContainer,
-  StyledAddProductModal,
-  StyledDailyCaloriesContainer,
-  StyledDailyCaloriesModal,
-  StyledNavigationContainer,
-  StyledNavigationModal,
-  StyledReturnButtonContainer,
+  ButtonContainer,
+  StyledContainer,
+  StyledModal,
 } from "../styles/components/CustomModal.styles";
 import { CustomReturnButton } from "./CutomReturnButton";
 import { ControlButton } from "./ControlButton";
 
-export const CustomModal = ({ children, modalType, open, onClose }) => {
+export const CustomModal = ({ children, modalContext, open, onClose }) => {
   const largeMobileMax = useMediaQuery({
     maxWidth: reactBreakpoints.largeMobileMax,
   });
 
   return (
     <>
-      {modalType === "navigation" && (
+      {modalContext === "navigation" && (
         <>
-          <StyledNavigationModal open={open} onClose={onClose}>
-            <StyledNavigationContainer>{children}</StyledNavigationContainer>
-          </StyledNavigationModal>
+          <StyledModal
+            open={open}
+            onClose={onClose}
+            modalContext={modalContext}
+          >
+            <StyledContainer modalContext={modalContext}>
+              {children}
+            </StyledContainer>
+          </StyledModal>
         </>
       )}
-      {modalType === "daily-calories" && (
+      {modalContext === "daily-calories" && (
         <>
-          <StyledDailyCaloriesModal open={open} onClose={onClose}>
-            <StyledDailyCaloriesContainer>
+          <StyledModal
+            open={open}
+            onClose={onClose}
+            modalContext={modalContext}
+          >
+            <StyledContainer modalContext={modalContext}>
               {largeMobileMax ? (
                 <>
                   <CustomReturnButton
@@ -49,20 +55,25 @@ export const CustomModal = ({ children, modalType, open, onClose }) => {
                 </>
               )}
               {children}
-            </StyledDailyCaloriesContainer>
-          </StyledDailyCaloriesModal>
+            </StyledContainer>
+          </StyledModal>
         </>
       )}
-      {modalType === "add-product" && (
+      {modalContext === "add-product" && (
         <>
-          <StyledAddProductModal open={open} onClose={onClose}>
-            <StyledAddProductContainer>
-              <StyledReturnButtonContainer onClick={onClose}>
+          <StyledModal
+            open={open}
+            onClose={onClose}
+            modalContext={modalContext}
+          >
+            <StyledContainer modalContext={modalContext}>
+              <ButtonContainer onClick={onClose}>
                 <CustomReturnButton buttonContext="add-product-modal" />
-              </StyledReturnButtonContainer>
+              </ButtonContainer>
+
               {children}
-            </StyledAddProductContainer>
-          </StyledAddProductModal>
+            </StyledContainer>
+          </StyledModal>
         </>
       )}
     </>
@@ -70,7 +81,7 @@ export const CustomModal = ({ children, modalType, open, onClose }) => {
 };
 
 CustomModal.propTypes = {
-  modalType: PropTypes.string,
+  modalContext: PropTypes.string,
   open: PropTypes.bool,
   onClose: PropTypes.func,
 };

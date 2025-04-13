@@ -1,14 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearNotification } from "../features/notifications/notificationSlice";
 import { Alert, Snackbar } from "@mui/material";
+import {
+  clearNotification,
+  selectNotification,
+} from "../features/notification/notificationSlice";
+import { useEffect, useState } from "react";
 
 export const Notification = () => {
-  const { message, type } = useSelector((state) => state.notification);
   const dispatch = useDispatch();
+  const notification = useSelector(selectNotification);
+  const [message, setMessage] = useState(null);
+  const [type, setType] = useState(null);
 
-  function handleClose() {
+  function handleClose(_, reason) {
+    if (reason === "clickaway") return;
     dispatch(clearNotification());
   }
+
+  useEffect(() => {
+    if (notification) {
+      setMessage(notification.message);
+      setType(notification.type);
+    } else {
+      setMessage(null);
+    }
+  }, [notification]);
 
   return (
     <Snackbar

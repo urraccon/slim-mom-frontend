@@ -17,22 +17,26 @@ export const StyledCustomAutocomplete = styled(Autocomplete)`
     }
   }
 
+  @media screen and (min-width: ${cssBreakpoints.lengths
+      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
+    &.MuiAutocomplete-root {
+      margin-right: 22px;
+    }
+  }
+
   @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
     .MuiAutocomplete-endAdornment {
       padding-bottom: 20px;
     }
-  }
 
-  @media screen and (min-width: ${cssBreakpoints.lengths
-      .tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
     &.MuiAutocomplete-root {
-      width: 68.3%;
+      width: 39.34%;
     }
   }
 
   @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
     &.MuiAutocomplete-root {
-      width: 67.64%;
+      margin-right: 48px;
     }
   }
 `;

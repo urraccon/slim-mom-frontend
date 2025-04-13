@@ -8,7 +8,7 @@ import {
   Title,
   Wrapper,
 } from "./DailyCaloriesFrom.styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DailyCaloriesIntake } from "./components/DailyCaloriesIntake";
 import {
   ageValidation,
@@ -19,28 +19,36 @@ import { RadioComp } from "../../../components/Radio";
 import { CustomTextField } from "../../../components/CustomTextField";
 import { ActionButton } from "../../../components/ActionButton";
 import { CustomModal } from "../../../components/CustomModal";
+import { useCalculateHealthDataMutation } from "../../../features/health/healthApi";
 
 export const DailyCaloriesForm = () => {
   const [height, setHeight] = useState("");
   const [age, setAge] = useState("");
-  const [curWt, setCurWt] = useState("");
-  const [desWt, setDesWt] = useState("");
-  const [bldTyp, setBldTyp] = useState(1);
+  const [currentWeight, setCurrentWeight] = useState("");
+  const [desiredWeight, setDesiredWeight] = useState("");
+  const [bloodType, setBloodType] = useState(1);
   const [heightErr, setHeightErr] = useState(false);
   const [ageErr, setAgeErr] = useState(false);
-  const [curWtErr, setCurWtErr] = useState(false);
-  const [desWtErr, setDesWtErr] = useState(false);
+  const [currentWeightErr, setCurrentWeightErr] = useState(false);
+  const [desiredWeightErr, setDesiredWeightErr] = useState(false);
   const [open, setOpen] = useState(false);
+  const [calculateHealthData, { isSuccess }] = useCalculateHealthDataMutation();
 
   const options = [1, 2, 3, 4];
+
+  useEffect(() => {
+    if (isSuccess) {
+      setOpen(true);
+    }
+  }, [isSuccess]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
     const validHeight = heightValidation(height);
     const validAge = ageValidation(age);
-    const validCurWt = weightValidation(curWt);
-    const validDesWt = weightValidation(desWt);
+    const validCurrentWeight = weightValidation(currentWeight);
+    const validDesiredWeight = weightValidation(desiredWeight);
 
     if (!validHeight) {
       setHeightErr(true);
@@ -54,20 +62,26 @@ export const DailyCaloriesForm = () => {
       setAgeErr(false);
     }
 
-    if (!validCurWt) {
-      setCurWtErr(true);
+    if (!validCurrentWeight) {
+      setCurrentWeightErr(true);
     } else {
-      setCurWtErr(false);
+      setCurrentWeightErr(false);
     }
 
-    if (!validDesWt) {
-      setDesWtErr(true);
+    if (!validDesiredWeight) {
+      setDesiredWeightErr(true);
     } else {
-      setDesWtErr(false);
+      setDesiredWeightErr(false);
     }
 
-    if (validHeight && validAge && validCurWt && validDesWt) {
-      setOpen(true);
+    if (validHeight && validAge && validCurrentWeight && validDesiredWeight) {
+      calculateHealthData({
+        height,
+        age,
+        currentWeight,
+        desiredWeight,
+        bloodType: Number(bloodType),
+      });
     }
   }
 
@@ -97,28 +111,28 @@ export const DailyCaloriesForm = () => {
                     textFieldContext="calories-form"
                   />
                   <CustomTextField
-                    error={curWtErr}
+                    error={currentWeightErr}
                     id="current-weight"
                     label="Current weight *"
-                    value={curWt}
-                    onChange={(evt) => setCurWt(evt.target.value)}
+                    value={currentWeight}
+                    onChange={(evt) => setCurrentWeight(evt.target.value)}
                     textFieldContext="calories-form"
                   />
                 </LeftColumn>
                 <RightColumn>
                   <CustomTextField
-                    error={desWtErr}
+                    error={desiredWeightErr}
                     id="desired-weight"
                     label="Desired weight *"
-                    value={desWt}
-                    onChange={(evt) => setDesWt(evt.target.value)}
+                    value={desiredWeight}
+                    onChange={(evt) => setDesiredWeight(evt.target.value)}
                     textFieldContext="calories-form"
                   />
                   <RadioComp
                     id="blood-type"
                     options={options}
-                    value={bldTyp}
-                    onChange={(evt) => setBldTyp(evt.target.value)}
+                    value={bloodType}
+                    onChange={(evt) => setBloodType(evt.target.value)}
                   />
                 </RightColumn>
               </Fields>
@@ -130,7 +144,7 @@ export const DailyCaloriesForm = () => {
         </Container>
       </Wrapper>
       <CustomModal
-        modalType="daily-calories"
+        modalContext="daily-calories"
         open={open}
         onClose={() => setOpen(false)}
       >

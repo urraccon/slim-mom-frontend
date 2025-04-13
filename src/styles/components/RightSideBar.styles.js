@@ -92,16 +92,62 @@ export const Title = styled.h2`
   line-height: 1.4;
 `;
 
-export const List = styled.ul`
+export const List = styled.ul.withConfig({
+  shouldForwardProp: (prop) => !["listContext"].includes(prop),
+})`
   margin: 0;
   padding: 0;
   list-style-type: none;
   display: flex;
   flex-direction: column;
   gap: 14px;
+
+  ${({ listContext }) => {
+    switch (listContext) {
+      case "restricted-foods":
+        return `
+  max-height: 112px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #264061;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
+    width: 37.5vw;
+    max-width: 356px
+  }
+    `;
+
+      default:
+        return null;
+    }
+  }}
 `;
 
-export const Item = styled.li``;
+export const Item = styled.li.withConfig({
+  shouldForwardProp: (prop) => !["itemContext"].includes(prop),
+})`
+  ${({ itemContext }) => {
+    switch (itemContext) {
+      case "restricted-foods":
+        return `
+  padding-right: 25px;
+      `;
+
+      default:
+        return null;
+    }
+  }};
+`;
 
 export const Box = styled.div`
   display: flex;
@@ -109,11 +155,28 @@ export const Box = styled.div`
   gap: 20px;
 `;
 
-export const TextWrapper = styled.span`
+export const TextWrapper = styled.span.withConfig({
+  shouldForwardProp: (prop) => !["textContext"].includes(prop),
+})`
   font-size: 14px;
   letter-spacing: 0.04em;
   color: #9b9faa;
   line-height: 1.25;
+
+  ${({ textContext }) => {
+    switch (textContext) {
+      case "restricted-foods":
+        return `
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+        `;
+
+      default:
+        return null;
+    }
+  }}
 `;
 
 export const Message = styled.span`

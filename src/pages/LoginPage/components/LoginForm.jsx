@@ -12,9 +12,6 @@ import { emailValidation, passwordValidation } from "../../../utils/validator";
 import { CustomTextField } from "../../../components/CustomTextField";
 import { ActionButton } from "../../../components/ActionButton";
 import { useLoginMutation } from "../../../features/auth/authApi";
-import { setUser } from "../../../features/auth/authSlice";
-import { useDispatch } from "react-redux";
-import { setNotification } from "../../../features/notifications/notificationSlice";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -22,9 +19,8 @@ export const LoginForm = () => {
   const [emailErr, setEmailErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
   const [login] = useLoginMutation();
-  const dispatch = useDispatch();
 
-  async function handleSubmit(evt) {
+  function handleSubmit(evt) {
     evt.preventDefault();
 
     const emailValid = emailValidation(email);
@@ -43,19 +39,7 @@ export const LoginForm = () => {
     }
 
     if (emailValid && passwordValid) {
-      try {
-        const { user, message } = await login({ email, password }).unwrap();
-
-        if (user) {
-          dispatch(setUser(user));
-        }
-
-        dispatch(setNotification({ message, type: "success" }));
-      } catch (error) {
-        const errorMessage = error?.data?.message || "Something went wrong";
-        dispatch(setNotification({ message: errorMessage, type: "error" }));
-        console.error("Login error:", errorMessage);
-      }
+      login({ email, password });
     }
   }
 
