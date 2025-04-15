@@ -22,7 +22,7 @@ export const DiaryProductListItem = ({ name, calories, quantity, id }) => {
     product: null,
     quantity: "",
     id: null,
-    product: null,
+    date: null,
   });
   const [anchorEl, setAnchorEl] = useState(null);
 
