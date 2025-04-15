@@ -87,11 +87,11 @@ export const DiaryAddProductForm = () => {
         <>
           <ActionButton
             onClick={() => setOpen(true)}
-            buttonContext="product-form-icon-button"
+            buttonType="add-product-form-icon-button"
             iconName="add-icon"
           />
           <CustomModal
-            modalContext="add-product"
+            modalType="add-product-form"
             open={open}
             onClose={() => setOpen(false)}
           >
@@ -106,7 +106,7 @@ export const DiaryAddProductForm = () => {
                       label="Enter product name"
                       id="product"
                       error={productErr}
-                      textFieldContext="product-form-product-field"
+                      textFieldType="add-product-form-product-field"
                     />
                     <CustomTextField
                       error={quantityErr}
@@ -114,10 +114,10 @@ export const DiaryAddProductForm = () => {
                       label="Grams"
                       value={quantity}
                       onChange={(evt) => setQuantity(evt.target.value)}
-                      textFieldContext="product-form-quantity-field"
+                      textFieldType="add-product-form-quantity-field"
                     />
                   </Fields>
-                  <ActionButton buttonContext="product-form-text-button">
+                  <ActionButton buttonType="add-product-form-text-button">
                     Add
                   </ActionButton>
                 </Form>
@@ -134,7 +134,8 @@ export const DiaryAddProductForm = () => {
             label="Enter product name"
             id="product"
             error={productErr}
-            textFieldContext="product-form-product-field"
+            textFieldType="add-product-form-product-field"
+            autocompleteType="add-product-form"
           />
           <CustomTextField
             error={quantityErr}
@@ -142,10 +143,10 @@ export const DiaryAddProductForm = () => {
             label="Grams"
             value={quantity}
             onChange={(evt) => setQuantity(evt.target.value)}
-            textFieldContext="product-form-quantity-field"
+            textFieldType="add-product-form-quantity-field"
           />
           <ActionButton
-            buttonContext="product-form-icon-button"
+            buttonType="add-product-form-icon-button"
             iconName="add-icon"
           />
         </Form>

@@ -23,12 +23,12 @@ export const Navigation = ({ privacy }) => {
       {privacy === "public" && (
         <NavMenu>
           <NavBtn>
-            <StyledNavLink to="login" navLinkContext="header">
+            <StyledNavLink to="login" navLinkType="header">
               Log in
             </StyledNavLink>
           </NavBtn>
           <NavBtn>
-            <StyledNavLink to="registration" navLinkContext="header">
+            <StyledNavLink to="registration" navLinkType="header">
               Registration
             </StyledNavLink>
           </NavBtn>
@@ -41,19 +41,19 @@ export const Navigation = ({ privacy }) => {
               <ControlButton
                 onClick={() => setOpen(false)}
                 iconName="close"
-                iconContext="navigation"
+                iconType="navigation"
               />
             ) : (
               <ControlButton onClick={() => setOpen(true)} iconName="menu" />
             )}
-            <CustomModal open={open} modalContext="navigation">
+            <CustomModal open={open} modalType="navigation">
               <OverlayNavContainer>
                 <OverlayNavMenu>
                   <OverlayNavBtn>
                     <StyledNavLink
                       to="diary"
                       onClick={() => setOpen(false)}
-                      navLinkContext="overlay"
+                      navLinkType="overlay"
                     >
                       Diary
                     </StyledNavLink>
@@ -62,7 +62,7 @@ export const Navigation = ({ privacy }) => {
                     <StyledNavLink
                       to="calculator"
                       onClick={() => setOpen(false)}
-                      navLinkContext="overlay"
+                      navLinkType="overlay"
                     >
                       Calculator
                     </StyledNavLink>
@@ -74,12 +74,12 @@ export const Navigation = ({ privacy }) => {
         ) : (
           <NavMenu>
             <NavBtn>
-              <StyledNavLink to="diary" navLinkContext="header">
+              <StyledNavLink to="diary" navLinkType="header">
                 Diary
               </StyledNavLink>
             </NavBtn>
             <NavBtn>
-              <StyledNavLink to="calculator" navLinkContext="header">
+              <StyledNavLink to="calculator" navLinkType="header">
                 Calculator
               </StyledNavLink>
             </NavBtn>

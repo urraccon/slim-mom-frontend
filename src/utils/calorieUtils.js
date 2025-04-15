@@ -5,6 +5,6 @@ function calculateProductCalories(item) {
 export const calculateTotalCalories = (entries) => {
   return entries.reduce(
     (sum, entrie) => sum + calculateProductCalories(entrie),
-    0
+    0,
   );
 };

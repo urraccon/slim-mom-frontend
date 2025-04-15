@@ -91,7 +91,7 @@ export const CalculatorCaloriesForm = () => {
                     label="Height *"
                     value={height}
                     onChange={(evt) => setHeight(evt.target.value)}
-                    textFieldContext="calories-form"
+                    textFieldType="calories-form"
                   />
                   <CustomTextField
                     error={ageErr}
@@ -99,7 +99,7 @@ export const CalculatorCaloriesForm = () => {
                     label="Age *"
                     value={age}
                     onChange={(evt) => setAge(evt.target.value)}
-                    textFieldContext="calories-form"
+                    textFieldType="calories-form"
                   />
                   <CustomTextField
                     error={currentWeightErr}
@@ -107,7 +107,7 @@ export const CalculatorCaloriesForm = () => {
                     label="Current weight *"
                     value={currentWeight}
                     onChange={(evt) => setCurrentWeight(evt.target.value)}
-                    textFieldContext="calories-form"
+                    textFieldType="calories-form"
                   />
                 </LeftColumn>
                 <RightColumn>
@@ -117,7 +117,7 @@ export const CalculatorCaloriesForm = () => {
                     label="Desired weight *"
                     value={desiredWeight}
                     onChange={(evt) => setDesiredWeight(evt.target.value)}
-                    textFieldContext="calories-form"
+                    textFieldType="calories-form"
                   />
                   <RadioComp
                     id="blood-type"
@@ -127,7 +127,7 @@ export const CalculatorCaloriesForm = () => {
                   />
                 </RightColumn>
               </Fields>
-              <ActionButton buttonContext="calories-form">
+              <ActionButton buttonType="calories-form">
                 Start losing weight
               </ActionButton>
             </Form>

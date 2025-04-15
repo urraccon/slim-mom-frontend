@@ -38,7 +38,8 @@ export const diaryApi = apiSlice.injectEndpoints({
       }),
       onQueryStarted: async ({ id, date }, { dispatch, queryFulfilled }) => {
         try {
-          const { data: updatedEntry } = await queryFulfilled;
+          const { data } = await queryFulfilled;
+          const updatedEntry = data.entry;
           const isoDate = formatDateToISO(date);
 
           dispatch(

@@ -67,13 +67,13 @@ export const LoginForm = () => {
             />
           </Fields>
           <Buttons>
-            <ActionButton buttonContext="authentication-form-contained-button">
+            <ActionButton buttonType="authentication-form-contained-button">
               Log in
             </ActionButton>
             <NavLink to="/registration">
               <ActionButton
                 variant="outlined"
-                buttonContext="authentication-form-outlined-button"
+                buttonType="authentication-form-outlined-button"
               >
                 Register
               </ActionButton>

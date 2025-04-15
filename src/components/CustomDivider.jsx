@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { StyledDivider } from "../styles/components/CustomDivider.styles";
 
-export const CustomDivider = ({ dividerContext }) => (
-  <StyledDivider dividerContext={dividerContext} />
+export const CustomDivider = ({ dividerType }) => (
+  <StyledDivider dividerType={dividerType} />
 );
 
 CustomDivider.propTypes = {
-  dividerContext: PropTypes.string,
+  dividerType: PropTypes.string,
 };

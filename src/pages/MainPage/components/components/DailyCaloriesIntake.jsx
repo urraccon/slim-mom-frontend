@@ -46,7 +46,7 @@ export const DailyCaloriesIntake = () => {
               <Kcal>kcal</Kcal>
             </Value>
           </RecommendedCalories>
-          <StyledDivider dividerContext="daily-calories-modal" />
+          <StyledDivider dividerType="daily-calories-modal" />
           <RestrictedFoods>
             <RestrictedFoodsTitle>
               Foods you should not eat
@@ -66,7 +66,7 @@ export const DailyCaloriesIntake = () => {
             </List>
           </RestrictedFoods>
           <NavLink to="login">
-            <ActionButton buttonContext="daily-calories-modal">
+            <ActionButton buttonType="daily-calories-modal">
               Start losing weight
             </ActionButton>
           </NavLink>

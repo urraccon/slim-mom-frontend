@@ -9,48 +9,40 @@ import {
 import { CustomReturnButton } from "./CutomReturnButton";
 import { ControlButton } from "./ControlButton";
 
-export const CustomModal = ({ children, modalContext, open, onClose }) => {
+export const CustomModal = ({ children, modalType, open, onClose }) => {
   const largeMobileMax = useMediaQuery({
     maxWidth: reactBreakpoints.largeMobileMax,
   });
 
   return (
     <>
-      {modalContext === "navigation" && (
+      {modalType === "navigation" && (
         <>
-          <StyledModal
-            open={open}
-            onClose={onClose}
-            modalContext={modalContext}
-          >
-            <StyledContainer modalContext={modalContext}>
+          <StyledModal open={open} onClose={onClose} modalType={modalType}>
+            <StyledContainer containerType={modalType}>
               {children}
             </StyledContainer>
           </StyledModal>
         </>
       )}
-      {modalContext === "daily-calories" && (
+      {modalType === "daily-calories" && (
         <>
-          <StyledModal
-            open={open}
-            onClose={onClose}
-            modalContext={modalContext}
-          >
-            <StyledContainer modalContext={modalContext}>
+          <StyledModal open={open} onClose={onClose} modalType={modalType}>
+            <StyledContainer containerType={modalType}>
               {largeMobileMax ? (
                 <>
                   <CustomReturnButton
                     onClick={onClose}
-                    buttonContext="daily-calories-modal"
+                    buttonType="daily-calories-modal"
                   />
                 </>
               ) : (
                 <>
                   <ControlButton
                     onClick={onClose}
-                    buttonContext="modal"
+                    buttonType="modal"
                     iconName="close"
-                    iconContext="modal"
+                    iconType="modal"
                   />
                 </>
               )}
@@ -59,18 +51,38 @@ export const CustomModal = ({ children, modalContext, open, onClose }) => {
           </StyledModal>
         </>
       )}
-      {modalContext === "add-product" && (
+      {modalType === "add-product-form" && (
         <>
-          <StyledModal
-            open={open}
-            onClose={onClose}
-            modalContext={modalContext}
-          >
-            <StyledContainer modalContext={modalContext}>
+          <StyledModal open={open} onClose={onClose} modalType={modalType}>
+            <StyledContainer containerType={modalType}>
               <ButtonContainer onClick={onClose}>
-                <CustomReturnButton buttonContext="add-product-modal" />
+                <CustomReturnButton buttonType={modalType} />
               </ButtonContainer>
-
+              {children}
+            </StyledContainer>
+          </StyledModal>
+        </>
+      )}
+      {modalType === "edit-product-form" && (
+        <>
+          <StyledModal open={open} onClose={onClose} modalType={modalType}>
+            <StyledContainer containerType={modalType}>
+              {largeMobileMax ? (
+                <>
+                  <ButtonContainer onClick={onClose}>
+                    <CustomReturnButton buttonType={modalType} />
+                  </ButtonContainer>
+                </>
+              ) : (
+                <>
+                  <ControlButton
+                    onClick={onClose}
+                    buttonType="modal"
+                    iconName="close"
+                    iconType="modal"
+                  />
+                </>
+              )}
               {children}
             </StyledContainer>
           </StyledModal>
@@ -81,7 +93,7 @@ export const CustomModal = ({ children, modalContext, open, onClose }) => {
 };
 
 CustomModal.propTypes = {
-  modalContext: PropTypes.string,
+  modalType: PropTypes.string,
   open: PropTypes.bool,
   onClose: PropTypes.func,
 };

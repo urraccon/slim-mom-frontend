@@ -1,5 +1,5 @@
 import { isFulfilled, isRejectedWithValue } from "@reduxjs/toolkit";
-import { setNotification } from "../features/notification/notificationSlice";
+import { setNotification } from "../features/notificationSlice";
 
 export const notificationMiddleware = () => (next) => (action) => {
   if (isRejectedWithValue(action)) {

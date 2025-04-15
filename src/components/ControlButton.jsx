@@ -4,20 +4,21 @@ import {
   StyledControlButton,
   StyledDateRangeIcon,
   StyledMenuIcon,
+  StyledMoreVertIcon,
 } from "../styles/components/ControlButton.styles";
 
 export const ControlButton = ({
-  buttonContext,
+  buttonType,
   onClick,
   iconName,
-  iconContext,
+  iconType,
   id,
 }) => {
   let icon;
 
   switch (iconName) {
     case "close":
-      icon = <StyledCloseIcon iconContext={iconContext} />;
+      icon = <StyledCloseIcon iconType={iconType} />;
       break;
 
     case "menu":
@@ -28,6 +29,10 @@ export const ControlButton = ({
       icon = <StyledDateRangeIcon />;
       break;
 
+    case "more-vert":
+      icon = <StyledMoreVertIcon />;
+      break;
+
     default:
       icon = null;
   }
@@ -35,7 +40,7 @@ export const ControlButton = ({
   return (
     <StyledControlButton
       id={id}
-      buttonContext={buttonContext}
+      buttonType={buttonType}
       onClick={onClick}
       disableRipple
     >
@@ -45,9 +50,9 @@ export const ControlButton = ({
 };
 
 ControlButton.propTypes = {
-  buttonContext: PropTypes.string,
+  buttonType: PropTypes.string,
   onClick: PropTypes.func,
   iconName: PropTypes.string,
-  iconContext: PropTypes.string,
+  iconType: PropTypes.string,
   id: PropTypes.string,
 };

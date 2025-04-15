@@ -1,10 +1,10 @@
-import { Close, DateRange, Menu } from "@mui/icons-material";
+import { Close, DateRange, Menu, MoreVert } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { cssBreakpoints } from "../breakpoints";
 
 export const StyledControlButton = styled(Button).withConfig({
-  shouldForwardProp: (prop) => !["buttonContext"].includes(prop),
+  shouldForwardProp: (prop) => !["buttonType"].includes(prop),
 })`
   &.MuiButtonBase-root {
     border-radius: 0;
@@ -20,42 +20,44 @@ export const StyledControlButton = styled(Button).withConfig({
     backgorund-color: #e0e0e0;
   }
 
-  ${({ buttonContext }) => {
-    switch (buttonContext) {
+  ${({ buttonType }) => {
+    switch (buttonType) {
       case "modal":
-        return `
-  &.MuiButtonBase-root {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    
-  }
+        return css`
+          &.MuiButtonBase-root {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+          }
         `;
 
-      case "product-list":
-        return `
-  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
-    &.MuiButtonBase-root {
-      margin: 0 12px 5px 0;
-      min-width: 17px;
-    }
-  }
+      case "action-menu":
+        return css`
+          &.MuiButtonBase-root {
+            min-width: 20px;
+          }
 
-  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
-    &.MuiButtonBase-root {
-      min-width: 20px;
-      margin-right: 40px
-    }
-  }
+          @media screen and (max-width: ${cssBreakpoints.lengths
+              .largeMobileMax}) {
+            &.MuiButtonBase-root {
+              margin: 0 12px 5px 0;
+            }
+          }
+
+          @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
+            &.MuiButtonBase-root {
+              margin-right: 40px;
+            }
+          }
         `;
 
       case "calendar":
-        return `
-  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
-    &.MuiButtonBase-root {
-      margin-bottom: 4px;
-    }
-  }
+        return css`
+          @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
+            &.MuiButtonBase-root {
+              margin-bottom: 4px;
+            }
+          }
         `;
 
       default:
@@ -65,44 +67,23 @@ export const StyledControlButton = styled(Button).withConfig({
 `;
 
 export const StyledCloseIcon = styled(Close).withConfig({
-  shouldForwardProp: (prop) => !["iconContext"].includes(prop),
+  shouldForwardProp: (prop) => !["iconType"].includes(prop),
 })`
-  ${({ iconContext }) => {
-    switch (iconContext) {
+  ${({ iconType }) => {
+    switch (iconType) {
       case "modal":
-        return `
-  &.MuiSvgIcon-root {
-    fill: black;
-    font-size: 20px;
-  }
-    `;
-
-      case "navigation":
-        return `
-  &.MuiSvgIcon-root {
-    fill: #212121;
-  }
+        return css`
+          &.MuiSvgIcon-root {
+            fill: #212121;
+            font-size: 20px;
+          }
         `;
 
-      case "product-list":
-        return `
-  &.MuiSvgIcon-root {
-    stroke: #9b9faa;
-    stroke-width: 1px;
-    fill: #9b9faa;
-  }
-
-  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
-    &.MuiSvgIcon-root {
-      font-size: 17px;
-    }
-  }
-
-  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
-    &.MuiSvgIcon-root {
-      font-size: 20px;
-    }
-  }
+      case "navigation":
+        return css`
+          &.MuiSvgIcon-root {
+            fill: #212121;
+          }
         `;
 
       default:
@@ -121,5 +102,14 @@ export const StyledDateRangeIcon = styled(DateRange)`
   &.MuiSvgIcon-root {
     font-size: 20px;
     fill: #9b9faa;
+  }
+`;
+
+export const StyledMoreVertIcon = styled(MoreVert)`
+  &.MuiSvgIcon-root {
+    stroke: #9b9faa;
+    stroke-width: 1px;
+    fill: #9b9faa;
+    font-size: 20px;
   }
 `;

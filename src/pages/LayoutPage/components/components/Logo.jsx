@@ -11,8 +11,8 @@ const imageSource = (privacy, largeMobileMax, tabletMax) => {
       return largeMobileMax
         ? logos.mobile
         : tabletMax
-        ? logos.tablet
-        : logos.desktop;
+          ? logos.tablet
+          : logos.desktop;
     case "private":
       return tabletMax ? logos.tablet : logos.desktop;
     default:

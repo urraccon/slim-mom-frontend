@@ -1,10 +1,10 @@
 import { TextField } from "@mui/material";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { cssBreakpoints } from "../breakpoints";
 
 export const StyledTextField = styled(TextField).withConfig({
   shouldForwardProp: (prop) =>
-    !["hasValue", "isFocused", "textFieldContext"].includes(prop),
+    !["hasValue", "isFocused", "textFieldType"].includes(prop),
 })`
   .MuiInputLabel-root {
     font-size: 14px;
@@ -64,60 +64,63 @@ export const StyledTextField = styled(TextField).withConfig({
     border-bottom: 1px solid #e0e0e0;
   }
 
-  ${({ textFieldContext }) => {
-    switch (textFieldContext) {
+  ${({ textFieldType }) => {
+    switch (textFieldType) {
       case "calories-form":
-        return `
-  @media screen and (max-width: ${cssBreakpoints.lengths.largeMobileMax}) {
-    width: 85.7%;
-  }
-    `;
+        return css`
+          @media screen and (max-width: ${cssBreakpoints.lengths
+              .largeMobileMax}) {
+            width: 85.7%;
+          }
+        `;
 
-      case "product-form-quantity-field":
-        return `
-  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
-    &.MuiTextField-root {
-      margin-right: 87px;
-    }
-  }
+      case "add-product-form-quantity-field":
+        return css`
+          @media screen and (min-width: ${cssBreakpoints.lengths
+              .tabletMin}) and (max-width: ${cssBreakpoints.lengths
+              .tabletMax}) {
+            &.MuiTextField-root {
+              margin-right: 87px;
+            }
+          }
 
-  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
-    &.MuiTextField-root {
-      width: 17.37%;
-    }
-  }
+          @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
+            &.MuiTextField-root {
+              width: 17.37%;
+            }
+          }
 
-  @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
-    &.MuiTextField-root {
-      margin-right: 60px;
-    }
-  }
+          @media screen and (min-width: ${cssBreakpoints.lengths.desktopMin}) {
+            &.MuiTextField-root {
+              margin-right: 60px;
+            }
+          }
 
-  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
-    .MuiInputBase-input {
-      text-align: right;
-    }
+          @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
+            .MuiInputBase-input {
+              text-align: right;
+            }
 
-    .MuiInputLabel-root {
-      right: 0;
-      left: auto;
-    }
-  }
-    `;
+            .MuiInputLabel-root {
+              right: 0;
+              left: auto;
+            }
+          }
+        `;
 
-      case "product-form-product-field":
-        return `
-  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
-    .MuiInputBase-input {
-      text-align: right;
-    }
+      case "add-product-form-product-field":
+        return css`
+          @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) {
+            .MuiInputBase-input {
+              text-align: right;
+            }
 
-    .MuiInputLabel-root {
-      right: 30px;
-      left: auto;
-    }
-  }
-    `;
+            .MuiInputLabel-root {
+              right: 30px;
+              left: auto;
+            }
+          }
+        `;
 
       default:
         return null;

@@ -20,6 +20,7 @@
     "axios": "^1.8.3",
     "dayjs": "^1.11.13",
     "modern-normalize": "^3.0.1",
+    "notistack": "^3.0.2",
     "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

@@ -10,7 +10,7 @@ export const UserInfo = ({ username }) => {
     <Wrapper>
       <Container>
         <Username>{username}</Username>
-        <StyledDivider orientation="vertical" dividerContext="user-info" />
+        <StyledDivider orientation="vertical" dividerType="user-info" />
         <LogoutBtn onClick={() => logout()}>Exit</LogoutBtn>
       </Container>
     </Wrapper>

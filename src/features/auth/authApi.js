@@ -1,7 +1,8 @@
 import { apiSlice } from "../../api/apiSlice";
 import { store } from "../../store/store";
 import { healthApi } from "../health/healthApi";
-import { clearUser, setUser } from "./authSlice";
+import { logout } from "./authActions";
+import { setUser } from "./authSlice";
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -71,7 +72,8 @@ export const authApi = apiSlice.injectEndpoints({
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         try {
           await queryFulfilled;
-          dispatch(clearUser());
+          dispatch(logout());
+          dispatch(apiSlice.util.resetApiState());
         } catch {}
       },
     }),

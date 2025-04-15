@@ -14,6 +14,6 @@ const diarySlice = createSlice({
   },
 });
 
-export const { setEntries } = diarySlice.actions;
+export const { setEntries, clearEntries } = diarySlice.actions;
 export const selectEntries = (state) => state.diary.items;
 export default diarySlice.reducer;

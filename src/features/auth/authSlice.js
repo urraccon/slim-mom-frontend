@@ -13,10 +13,6 @@ const authSlice = createSlice({
       state.user = payload;
       state.isAuthenticated = true;
     },
-    clearUser: (state) => {
-      state.user = null;
-      state.isAuthenticated = false;
-    },
   },
 });
 

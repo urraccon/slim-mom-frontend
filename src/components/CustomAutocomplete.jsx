@@ -22,13 +22,14 @@ export const CustomAutocomplete = ({
   label,
   id,
   error,
-  textFieldContext,
+  textFieldType,
+  autocompleteType,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
+  const hasValue = value?.title.length > 0;
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
-  const hasValue = value?.title.length > 0;
 
   return (
     <StyledCustomAutocomplete
@@ -53,9 +54,10 @@ export const CustomAutocomplete = ({
           isFocused={isFocused}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          textFieldContext={textFieldContext}
+          textFieldType={textFieldType}
         />
       )}
+      autocompleteType={autocompleteType}
     />
   );
 };
@@ -67,5 +69,6 @@ CustomAutocomplete.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,
   error: PropTypes.string,
-  textFieldContext: PropTypes.string,
+  textFieldType: PropTypes.string,
+  autocompleteType: PropTypes.string,
 };

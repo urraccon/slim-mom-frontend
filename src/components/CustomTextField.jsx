@@ -9,7 +9,7 @@ export const CustomTextField = ({
   label,
   error,
   type = "text",
-  textFieldContext,
+  textFieldType,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -36,7 +36,7 @@ export const CustomTextField = ({
           autoComplete: "off",
         },
       }}
-      textFieldContext={textFieldContext}
+      textFieldType={textFieldType}
     ></StyledTextField>
   );
 };
@@ -48,5 +48,5 @@ CustomTextField.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  textFieldContext: PropTypes.string,
+  textFieldType: PropTypes.string,
 };

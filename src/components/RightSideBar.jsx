@@ -12,15 +12,15 @@ import {
 } from "../styles/components/RightSideBar.styles";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { selectUserHealthData } from "../features/auth/authSelectors";
-import { selectSelectedDate } from "../features/date/dateSlice";
+import { selectUser } from "../features/auth/authSelectors";
+import { selectSelectedDate } from "../features/dateSlice";
 import { formatDateToUI, todayDayjs } from "../utils/dateUtils";
 import { selectEntries } from "../features/diary/diarySlice";
 import { calculateTotalCalories } from "../utils/calorieUtils";
 
 export const RightSideBar = () => {
   const today = todayDayjs();
-  const healthData = useSelector(selectUserHealthData);
+  const { healthData } = useSelector(selectUser);
   const selectedDate = useSelector(selectSelectedDate);
   const [recommendedCalories, setRecommendedCalories] = useState(0);
   const [restrictedFoods, setRestrictedFoods] = useState([]);
@@ -88,13 +88,13 @@ export const RightSideBar = () => {
           </Block>
           <Block>
             <Title>Food not recommended</Title>
-            <List listContext="restricted-foods">
+            <List listType="restricted-foods">
               {restrictedFoods?.length === 0 ? (
                 <Message>Your diet will be displayed here</Message>
               ) : (
                 restrictedFoods?.map((restrictedFood) => (
-                  <Item key={restrictedFood._id} itemContext="restricted-foods">
-                    <TextWrapper textContext="restricted-foods">
+                  <Item key={restrictedFood._id} itemType="restricted-foods">
+                    <TextWrapper textType="restricted-foods">
                       {restrictedFood.title}
                     </TextWrapper>
                   </Item>

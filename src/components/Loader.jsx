@@ -1,7 +1,9 @@
-import { StyledCircularProgress } from "../styles/components/Loader.styles";
-import { Backdrop } from "@mui/material";
+import {
+  StyledBackdrop,
+  StyledCircularProgress,
+} from "../styles/components/Loader.styles";
 import { useSelector } from "react-redux";
-import { selectIsLoading } from "../features/loader/loaderSlice";
+import { selectIsLoading } from "../features/loaderSlice";
 
 export const Loader = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -9,9 +11,9 @@ export const Loader = () => {
   return (
     <>
       {isLoading && (
-        <Backdrop open={true}>
+        <StyledBackdrop open={true}>
           <StyledCircularProgress />
-        </Backdrop>
+        </StyledBackdrop>
       )}
     </>
   );

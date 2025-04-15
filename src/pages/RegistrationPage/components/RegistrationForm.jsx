@@ -88,13 +88,13 @@ export const RegistrationForm = () => {
             />
           </Fields>
           <Buttons>
-            <ActionButton buttonContext="authentication-form-contained-button">
+            <ActionButton buttonType="authentication-form-contained-button">
               Register
             </ActionButton>
             <NavLink to="/login">
               <ActionButton
                 variant="outlined"
-                buttonContext="authentication-form-outlined-button"
+                buttonType="authentication-form-outlined-button"
               >
                 Log in
               </ActionButton>

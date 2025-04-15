@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { cssBreakpoints } from "../../../../styles/breakpoints";
 import { NavLink } from "react-router-dom";
 
@@ -107,7 +107,7 @@ export const OverlayNavBtn = styled.li`
 `;
 
 export const StyledNavLink = styled(NavLink).withConfig({
-  shouldForwardProp: (prop) => !["navLinkContext"].includes(prop),
+  shouldForwardProp: (prop) => !["navLinkType"].includes(prop),
 })`
   text-decoration: none;
   color: inherit;
@@ -119,20 +119,20 @@ export const StyledNavLink = styled(NavLink).withConfig({
   outline: none;
   cursor: pointer;
 
-  ${({ navLinkContext }) => {
-    switch (navLinkContext) {
+  ${({ navLinkType }) => {
+    switch (navLinkType) {
       case "header":
-        return `
-  &.active {
-    color: #212121;
-  }
+        return css`
+          &.active {
+            color: #212121;
+          }
         `;
 
       case "overlay":
-        return `
-  &.active {
-    color: white;
-  }
+        return css`
+          &.active {
+            color: white;
+          }
         `;
 
       default:

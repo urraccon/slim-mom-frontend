@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { backgrounds } from "../../assets/assets";
 import { cssBreakpoints } from "../../styles/breakpoints";
 
@@ -93,7 +93,7 @@ export const Title = styled.h2`
 `;
 
 export const List = styled.ul.withConfig({
-  shouldForwardProp: (prop) => !["listContext"].includes(prop),
+  shouldForwardProp: (prop) => !["listType"].includes(prop),
 })`
   margin: 0;
   padding: 0;
@@ -102,30 +102,32 @@ export const List = styled.ul.withConfig({
   flex-direction: column;
   gap: 14px;
 
-  ${({ listContext }) => {
-    switch (listContext) {
+  ${({ listType }) => {
+    switch (listType) {
       case "restricted-foods":
-        return `
-  max-height: 112px;
-  overflow: auto;
+        return css`
+          max-height: 112px;
+          overflow: auto;
 
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
+          &::-webkit-scrollbar {
+            width: 6px;
+          }
 
-  &::-webkit-scrollbar-thumb {
-    background: #264061;
-  }
+          &::-webkit-scrollbar-thumb {
+            background: #264061;
+          }
 
-  &::-webkit-scrollbar-track {
-    background: white;
-  }
+          &::-webkit-scrollbar-track {
+            background: white;
+          }
 
-  @media screen and (min-width: ${cssBreakpoints.lengths.tabletMin}) and (max-width: ${cssBreakpoints.lengths.tabletMax}) {
-    width: 37.5vw;
-    max-width: 356px
-  }
-    `;
+          @media screen and (min-width: ${cssBreakpoints.lengths
+              .tabletMin}) and (max-width: ${cssBreakpoints.lengths
+              .tabletMax}) {
+            width: 37.5vw;
+            max-width: 356px;
+          }
+        `;
 
       default:
         return null;
@@ -134,14 +136,14 @@ export const List = styled.ul.withConfig({
 `;
 
 export const Item = styled.li.withConfig({
-  shouldForwardProp: (prop) => !["itemContext"].includes(prop),
+  shouldForwardProp: (prop) => !["itemType"].includes(prop),
 })`
-  ${({ itemContext }) => {
-    switch (itemContext) {
+  ${({ itemType }) => {
+    switch (itemType) {
       case "restricted-foods":
-        return `
-  padding-right: 25px;
-      `;
+        return css`
+          padding-right: 25px;
+        `;
 
       default:
         return null;
@@ -156,21 +158,21 @@ export const Box = styled.div`
 `;
 
 export const TextWrapper = styled.span.withConfig({
-  shouldForwardProp: (prop) => !["textContext"].includes(prop),
+  shouldForwardProp: (prop) => !["textType"].includes(prop),
 })`
   font-size: 14px;
   letter-spacing: 0.04em;
   color: #9b9faa;
   line-height: 1.25;
 
-  ${({ textContext }) => {
-    switch (textContext) {
+  ${({ textType }) => {
+    switch (textType) {
       case "restricted-foods":
-        return `
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: block;
+        return css`
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          display: block;
         `;
 
       default:

@@ -100,7 +100,7 @@ export const DailyCaloriesForm = () => {
                     label="Height *"
                     value={height}
                     onChange={(evt) => setHeight(evt.target.value)}
-                    textFieldContext="calories-form"
+                    textFieldType="calories-form"
                   />
                   <CustomTextField
                     error={ageErr}
@@ -108,7 +108,7 @@ export const DailyCaloriesForm = () => {
                     label="Age *"
                     value={age}
                     onChange={(evt) => setAge(evt.target.value)}
-                    textFieldContext="calories-form"
+                    textFieldType="calories-form"
                   />
                   <CustomTextField
                     error={currentWeightErr}
@@ -116,7 +116,7 @@ export const DailyCaloriesForm = () => {
                     label="Current weight *"
                     value={currentWeight}
                     onChange={(evt) => setCurrentWeight(evt.target.value)}
-                    textFieldContext="calories-form"
+                    textFieldType="calories-form"
                   />
                 </LeftColumn>
                 <RightColumn>
@@ -126,7 +126,7 @@ export const DailyCaloriesForm = () => {
                     label="Desired weight *"
                     value={desiredWeight}
                     onChange={(evt) => setDesiredWeight(evt.target.value)}
-                    textFieldContext="calories-form"
+                    textFieldType="calories-form"
                   />
                   <RadioComp
                     id="blood-type"
@@ -136,7 +136,7 @@ export const DailyCaloriesForm = () => {
                   />
                 </RightColumn>
               </Fields>
-              <ActionButton buttonContext="calories-form">
+              <ActionButton buttonType="calories-form">
                 Start losing weight
               </ActionButton>
             </Form>
@@ -144,7 +144,7 @@ export const DailyCaloriesForm = () => {
         </Container>
       </Wrapper>
       <CustomModal
-        modalContext="daily-calories"
+        modalType="daily-calories"
         open={open}
         onClose={() => setOpen(false)}
       >

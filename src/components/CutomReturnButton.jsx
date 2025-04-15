@@ -4,9 +4,9 @@ import {
   StyledReturnIcon,
 } from "../styles/components/CustomReturnButton.styles";
 
-export const CustomReturnButton = ({ buttonContext, onClick }) => (
+export const CustomReturnButton = ({ buttonType, onClick }) => (
   <StyledCustomReturnButton
-    buttonContext={buttonContext}
+    buttonType={buttonType}
     onClick={onClick}
     disableRipple
   >
@@ -15,6 +15,6 @@ export const CustomReturnButton = ({ buttonContext, onClick }) => (
 );
 
 CustomReturnButton.propTypes = {
-  buttonContext: PropTypes.string,
+  buttonType: PropTypes.string,
   onClick: PropTypes.func,
 };

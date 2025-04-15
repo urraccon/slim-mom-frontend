@@ -1,5 +1,5 @@
 import { isFulfilled, isPending, isRejected } from "@reduxjs/toolkit";
-import { startLoading, stopLoading } from "../features/loader/loaderSlice";
+import { startLoading, stopLoading } from "../features/loaderSlice";
 
 export const loaderMiddleware = () => (next) => (action) => {
   if (isPending(action)) {

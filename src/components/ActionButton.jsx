@@ -9,7 +9,7 @@ export const ActionButton = ({
   type = "submit",
   variant = "contained",
   onClick,
-  buttonContext,
+  buttonType,
   iconName,
 }) => {
   return (
@@ -18,7 +18,7 @@ export const ActionButton = ({
       onClick={onClick}
       type={type}
       variant={variant}
-      buttonContext={buttonContext}
+      buttonType={buttonType}
       iconName={iconName}
     >
       {iconName === "add-icon" ? <StyledAddIcon /> : children}
@@ -30,6 +30,6 @@ ActionButton.propTypes = {
   type: PropTypes.string,
   variant: PropTypes.string,
   onClick: PropTypes.func,
-  buttonContext: PropTypes.string,
+  buttonType: PropTypes.string,
   iconName: PropTypes.string,
 };

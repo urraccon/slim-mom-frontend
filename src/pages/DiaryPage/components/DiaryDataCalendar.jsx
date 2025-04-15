@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectSelectedDate,
   setSelectedDate,
-} from "../../../features/date/dateSlice";
+} from "../../../features/dateSlice";
 import { useGetEntriesByDateQuery } from "../../../features/diary/diaryApi";
 import { setEntries } from "../../../features/diary/diarySlice";
 
@@ -84,7 +84,7 @@ export const DiaryDateCalendar = () => {
     <Container>
       <Date>{formattedDate}</Date>
       <ControlButton
-        buttonContext="calendar"
+        buttonType="calendar"
         onClick={handleClick}
         iconName="calendar"
       />

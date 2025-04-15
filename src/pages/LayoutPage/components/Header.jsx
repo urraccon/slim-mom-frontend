@@ -45,7 +45,7 @@ export const Header = () => {
                   <>
                     <StyledDivider
                       orientation="vertical"
-                      dividerContext="header"
+                      dividerType="header"
                     />
                   </>
                 )}
@@ -87,7 +87,7 @@ export const Header = () => {
                         <Logo privacy="private" />
                         <StyledDivider
                           orientation="vertical"
-                          dividerContext="header"
+                          dividerType="header"
                         />
                         <Navigation privacy="private" />
                       </Box>
