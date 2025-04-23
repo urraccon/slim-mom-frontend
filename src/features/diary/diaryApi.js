@@ -33,7 +33,7 @@ export const diaryApi = apiSlice.injectEndpoints({
     updateEntry: builder.mutation({
       query: ({ id, ...updatedFields }) => ({
         url: `/diary/${id}`,
-        method: "PUT",
+        method: "PATCH",
         body: updatedFields,
       }),
       onQueryStarted: async ({ id, date }, { dispatch, queryFulfilled }) => {
