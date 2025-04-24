@@ -28,16 +28,18 @@ This is a frontend application built using Vite, a fast and modern build tool. T
 ## Project Stucture
 
 - /public: Contains static public assets like image and fonts, served directly by the browser
-- /api: Manages base API configuration and integration with the backend, typically using RTK Query
 - /src: Main source folder housing all frontend logic and structure
-- /assets: Holds design assets such as images, icons or static styles shared across the app
-- /components: Contains reusable UI components used throughout the application
-- /features: Contains feature-specific logic such as slices and API calls, grouped by domain
-- /middlewares: Contains custom Redux middlewares for intercepting actions or adding side effects
-- /pages: Holds top-level components mapped to routes, each representing a distinct view or screen
-- /store: Centralized global state configuration and reducer management for the app
-- /styles: Global CSS or styling helpers shared across multiple components or pages
-- /utils: General-purpose utility functions and helpers used throughout the codebase
+- /src/api: Manages base API configuration and integration with the backend, typically using RTK Query
+- /src/assets: Holds design assets such as images, icons or static styles shared across the app
+- /src/components: Contains reusable UI components used throughout the application
+- /src/features: Contains feature-specific logic such as slices and API calls, grouped by domain
+- /src/middlewares: Contains custom Redux middlewares for intercepting actions or adding side effects
+- /src/pages: Holds top-level components mapped to routes, each representing a distinct view or screen
+- /src/store: Centralized global state configuration and reducer management for the app
+- /src/styles: Global CSS or styling helpers shared across multiple components or pages
+- /src/utils: General-purpose utility functions and helpers used throughout the codebase
+- /src/App.jsx: Defines the application's routing structure and top-level layout, rendering the correct views based on the URL
+- /src/main.jsx: Application entry point that renders the app into the DOM and wraps it with global providers
 
 ## Technologies User
 
