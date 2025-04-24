@@ -48,11 +48,11 @@ This is a frontend application built using Vite, a fast and modern build tool. T
 
 ## Scripts
 
-- npm run dev: Start the development server with hot module replacement.
-- npm run build: Create a production build of the app.
-- npm run preview: Preview the production build locally.
-- npm run deploy: Deploy the application to the specified environment.
-- npm run lint: Run a linter to check for code style issues.
+- npm run dev: Start the development server with hot module replacement
+- npm run build: Create a production build of the app
+- npm run preview: Preview the production build locally
+- npm run deploy: Deploy the application to the specified environment
+- npm run lint: Run a linter to check for code style issues
 
 ## License
 
