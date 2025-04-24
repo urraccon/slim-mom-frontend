@@ -10,7 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
-    <Router basename="/slim-mom-frontend/">
+    <Router basename="/slimmom/">
       <LogoutOnPublicRoutes />
       <Routes>
         <Route path="/" element={<LayoutPage />}>
