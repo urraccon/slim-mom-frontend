@@ -81,7 +81,9 @@ export const RightSideBar = () => {
               <Item>
                 <Box>
                   <TextWrapper>n% of normal</TextWrapper>
-                  <TextWrapper>{`${caloriesIntake}%`}</TextWrapper>
+                  <TextWrapper>
+                    {Number.isNan(caloriesIntake) ? "0%" : `${caloriesIntake}%`}
+                  </TextWrapper>
                 </Box>
               </Item>
             </List>
