@@ -24,7 +24,7 @@ export const DiaryProductList = () => {
           ) : (
             items.map((item) => {
               const name = item.product.title;
-              const calories = calculateProductCalories(item);
+              const calories = Math.round(calculateProductCalories(item));
               const quantity = item.quantity;
               const key = item._id;
               const id = item._id;
