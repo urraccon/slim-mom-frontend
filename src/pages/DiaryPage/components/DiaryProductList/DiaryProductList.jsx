@@ -3,6 +3,7 @@ import { Container, List, Message } from "./DiaryProductList.styles";
 import { DiaryProductListItem } from "./components/DiaryProductListItem";
 import { useEffect, useState } from "react";
 import { selectEntries } from "../../../../features/diary/diarySlice";
+import { calculateProductCalories } from "../../../../utils/calorieUtils";
 
 export const DiaryProductList = () => {
   const entries = useSelector(selectEntries);
@@ -23,7 +24,7 @@ export const DiaryProductList = () => {
           ) : (
             items.map((item) => {
               const name = item.product.title;
-              const calories = item.product.calories;
+              const calories = calculateProductCalories(item);
               const quantity = item.quantity;
               const key = item._id;
               const id = item._id;
