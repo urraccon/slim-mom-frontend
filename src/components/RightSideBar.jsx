@@ -10,13 +10,18 @@ import {
   Block,
   Wrapper,
 } from "../styles/components/RightSideBar.styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { selectUser } from "../features/auth/authSelectors";
 import { selectSelectedDate } from "../features/dateSlice";
-import { formatDateToUI, todayDayjs } from "../utils/dateUtils";
-import { selectEntries } from "../features/diary/diarySlice";
+import {
+  formatDateToISO,
+  formatDateToUI,
+  todayDayjs,
+} from "../utils/dateUtils";
+import { selectEntries, setEntries } from "../features/diary/diarySlice";
 import { calculateTotalCalories } from "../utils/calorieUtils";
+import { useGetEntriesByDateQuery } from "../features/diary/diaryApi";
 
 export const RightSideBar = () => {
   const today = todayDayjs();
@@ -27,11 +32,18 @@ export const RightSideBar = () => {
   const [date, setDate] = useState(today);
   const [consumedCalories, setConsumedCalories] = useState(0);
   const entries = useSelector(selectEntries);
-  const leftCalories = recommendedCalories - consumedCalories;
-  const caloriesIntake = Math.round(
-    (consumedCalories / recommendedCalories) * 100
-  );
+  const [leftCalories, setLeftCalories] = useState(0);
+  const [caloriesIntake, setCaloriesIntake] = useState(0);
   const formattedDate = formatDateToUI(date);
+  const isoDate = formatDateToISO(date);
+  const { data } = useGetEntriesByDateQuery(isoDate);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setEntries(data));
+    }
+  }, [data, dispatch]);
 
   useEffect(() => {
     if (entries) {
@@ -52,6 +64,18 @@ export const RightSideBar = () => {
       setDate(selectedDate);
     }
   }, [selectedDate]);
+
+  useEffect(() => {
+    if (recommendedCalories !== 0 && consumedCalories !== 0) {
+      setLeftCalories(recommendedCalories - consumedCalories);
+      setCaloriesIntake(
+        Math.round((consumedCalories / recommendedCalories) * 100)
+      );
+    } else {
+      setLeftCalories(0);
+      setCaloriesIntake(0);
+    }
+  }, [recommendedCalories, consumedCalories]);
 
   return (
     <Container>
@@ -81,9 +105,7 @@ export const RightSideBar = () => {
               <Item>
                 <Box>
                   <TextWrapper>n% of normal</TextWrapper>
-                  <TextWrapper>
-                    {Number.isNaN(caloriesIntake) ? "0%" : `${caloriesIntake}%`}
-                  </TextWrapper>
+                  <TextWrapper>{`${caloriesIntake}%`}</TextWrapper>
                 </Box>
               </Item>
             </List>

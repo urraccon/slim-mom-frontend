@@ -21,8 +21,6 @@ import {
   selectSelectedDate,
   setSelectedDate,
 } from "../../../features/dateSlice";
-import { useGetEntriesByDateQuery } from "../../../features/diary/diaryApi";
-import { setEntries } from "../../../features/diary/diarySlice";
 
 const dateCalProps = {
   day: {
@@ -49,15 +47,7 @@ export const DiaryDateCalendar = () => {
   const [date, setDate] = useState(today);
   const selectedDate = useSelector(selectSelectedDate);
   const dispatch = useDispatch();
-  const isoDate = formatDateToISO(date);
-  const { data } = useGetEntriesByDateQuery(isoDate);
   const formattedDate = formatDateToUI(date);
-
-  useEffect(() => {
-    if (data) {
-      dispatch(setEntries(data));
-    }
-  }, [data, dispatch]);
 
   useEffect(() => {
     if (selectedDate) {
